@@ -1,0 +1,183 @@
+{% extends "Base.html" %}
+{% load static %}
+{% block title %}
+{{ page_title }}  | Proyeccion Social
+{% endblock title %}
+{% block Css %}
+<link href="https://fonts.googleapis.com/css?family=Poppins:400,800,900" rel="stylesheet">
+<style>
+  :root{
+    --colorTextos: #49454567;
+}
+*,
+::before,
+::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+.wave{
+    position: absolute;
+    margin-left: 100px;
+    margin-top: 80px;
+}
+.body {
+    margin-top: 50px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+h1{
+    text-align: center;
+    margin: 10px 0;
+    font-weight: 800;
+}
+
+form{
+    background: #fff;
+    width: 30%;
+    border-radius: 10px;
+    box-shadow: 0 0 6px 0 rgba(255, 255, 255, 0.8);
+}
+
+.form{
+    width: 100%;
+    height: 750px;
+    
+}
+
+form .grupo{
+    position: relative;
+    margin: 30px;
+    height: 80px;
+}
+
+input, textarea{
+    background: none;
+    color:#c6c6c6;
+    font-size: 18px;
+    padding: 10px 10px 10px 5px;
+    display: block;
+    width: 100%;
+    border:none;
+    border-bottom: 1px solid var(--colorTextos);
+    
+}
+
+label{
+    color: var(--colorTextos);
+    font-size: 16px;
+    position: absolute;
+    left: 5px;
+    top:10px;
+    transition: 0.5s ease all;
+    pointer-events: none;
+}
+
+.btn-success{
+  position: absolute;
+  margin-top: -50px;
+  margin-left: 300px;
+  
+}
+.btn-danger{
+  position: absolute;
+  margin-top: -50px;
+  margin-left: 100px;
+
+}
+input:focus~.barra::before, textarea:focus~.barra::before{
+    width: 100%;
+}
+.barra{
+    position: relative;
+    display: block;
+    width: 100%;
+}
+.barra::before{
+    content: '';
+    height: 2px;
+    width: 0%;
+    bottom: 0;
+    position: absolute;
+    background: linear-gradient(to right, #6A82FB, #FC5C7D);
+    transition: 0.3s ease all;
+    left: 0%;
+}
+
+@media screen and (max-width:1100px){
+    form{
+        width: 50%;
+    }
+}
+
+@media screen and (max-width:600px){
+    form{
+        width: 60%;
+    }
+}
+
+@media screen and (max-width:450px){
+    form{
+        width: 80%;
+    }
+}
+
+@media screen and (max-width:300px){
+    form{
+        width: 90%;
+    }
+}
+
+</style>
+{% endblock Css %}
+{% block body %}
+<a href="{% url 'inicioConvenio'%}">
+    <img class="wave" src="{% static 'image/atras.png' %}">
+    </a>
+<div class="body">
+    
+    <form method="post">
+        {% csrf_token %} 
+        <div class="form">
+            <h1>{{ page_title }}</h1>
+            <div class="grupo">
+                {{ form.documento.label }}
+                {{form.documento}}
+            </div>
+            <div class="grupo">
+                {{ form.convenio.label }}
+                {{form.convenio}}
+            </div>
+      <div class="grupo">
+          {{ form.nombre.label }}
+          {{form.nombre}}
+        </div>
+        <div class="grupo">
+            {{ form.telefono.label }}
+            {{form.telefono}}
+        </div>
+        <div class="grupo">
+            {{ form.municipio.label }}
+            {{form.municipio}}
+        </div>
+        <div class="grupo">
+            {{ form.programa.label }}
+            {{form.programa}}
+        </div>
+        <div class="grupo">
+            {{ form.facultad.label }}
+            {{form.facultad}}
+
+      </div>
+
+      <button class="btn btn-success" type="submit">Guardar</button>
+<a class="btn btn-danger" href="{% url 'inicioConvenio' %}" role="button">Cancelar</a>
+
+      
+    </div>
+</form>
+</div>
+{% endblock %}   

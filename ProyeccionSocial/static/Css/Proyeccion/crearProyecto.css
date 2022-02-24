@@ -1,0 +1,89 @@
+ :root{
+        --colorTextos: #49454567;
+    }
+     *,
+    ::before,
+    ::after {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+    .body {
+        margin-top: 5%;
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+    }
+    input{
+        background: none;
+        color:#c6c6c6;
+        font-size: 18px;
+        display: block;
+        width: 90%;
+        border:none;
+        border-bottom: 1px solid var(--colorTextos);
+        resize: none;
+    }
+    input:focus{
+        outline: none;
+        color: rgb(94,93,93);
+    }
+    input:focus~label,
+    input:valid~label{
+    top: -14px;
+    font-size: 12px;
+    color: #2196F3;
+}
+.titulo{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+}
+h1{
+    text-align: left;
+    font-weight: 800;
+    margin-top: 10px;
+    font-size: 50px;
+
+}
+.gif{
+    width: 50px;
+    float: left;
+    margin-left: -200px;
+}
+  form{
+
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0 0 6px 0 rgba(255, 255, 255, 0.8);
+}
+  form .grupo{
+      position: relative;
+      margin: 30px;
+      height: 80px;
+    }
+  .atras{
+      margin-top: 20px;
+      float: left;
+  }
+  .volver{
+      width: 60px;
+      margin-left: 150px;
+  }
+.btn-success{
+   margin-left: 75%;
+}
+.btn-danger{
+    margin-left: -40%;
+}
+.left{
+    float: left;
+    margin-right: 200px;
+}
+.rigth{
+    float: right;
+    margin-top: -30px;
+}

@@ -1,0 +1,54 @@
+{% extends "Base.html" %}
+{% load static %}
+{% block title %}
+ {{ page_title }} | Proyeccion Social
+{% endblock title %}
+{% block Css %}
+<style>
+    .bienvenido, h1{
+        font-size: 2em;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-block-start: 2em;
+        margin-block-end: 0.67em;
+        margin-inline-start: 0px;
+        margin-inline-end: 0px;
+        font-weight: bold;
+    }
+    .parrafo{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.2em;
+        margin-block-start: 2em;
+        margin-block-end: 0.67em;
+        margin-inline-start: 0px;
+        margin-inline-end: 0px;
+        font-weight: bold;
+    }
+    .opciones{
+        display: flex;
+        padding: 20px;
+        justify-content: center;
+        margin-top: 40px;
+        
+    }
+    .btn-primary{
+        margin-right: 100px;
+    }
+</style>
+{% endblock Css %}
+
+{% block body %}
+<div class="bienvenido">
+    <h1>Bienvenido, {{ user.username | upper}}</h1>
+</div>
+<div class="parrafo">
+    <p>Elija una opcion para comenzar</p>
+</div>
+<div class="opciones">
+    <a class="btn btn-primary" href="{% url 'inicioProyeccion' %}" role="button">Inicio Proyeccion</a></li>
+    <a class="btn btn-dark" href="{% url 'inicioConvenio' %}" role="button">Inicio Convenios</a>
+</div>
+{% endblock %}   

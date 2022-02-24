@@ -1,0 +1,45 @@
+{% extends "Base.html" %}
+{% load static %}
+{% block title %}
+{{ page_title }}  | Proyeccion Social
+{% endblock title %}
+{% block Css %}
+{% endblock %}
+
+{% block body %}
+    <a href="{% url 'inicioProyeccion'%}">
+<img class="wave" src="{% static 'image/atras.png' %}" alt="Arrows">
+</a>
+<div class="body">
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="form">
+            <h1>{{ page_title }}</h1>
+            <div class="grupo">
+                {{ object.ciudad }}
+                {{ object.ciudad }}
+            </div>
+            <div class="grupo">
+                {{ form.ciudad.label }}
+                {{form.ciudad}}
+            </div>
+                <div class="grupo">
+                    {{ form.institucion.label }}
+                    {{form.institucion}}
+                </div>
+                <div class="grupo">
+                    {{ form.programa.label }}
+                    {{form.programa}}
+                </div>
+                <div class="grupo">
+                {{ form.descripcion.label }}
+                {{form.descripcion}}
+            </div>
+        </div>
+        <button class="btn btn-success" type="submit">Guardar</button>
+    </form>
+    </div>
+
+</div>
+</div>
+{% endblock %}   

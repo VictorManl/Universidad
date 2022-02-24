@@ -1,0 +1,39 @@
+ @import url('https://fonts.googleapis.com/css2?family=Hind:wght@500&display=swap');
+.body{
+   font-family:'Hind', sans-serif;
+}
+ .wave{
+    width: 58px;
+    float: left;
+}
+ .titulo{
+     display: flex;
+    align-items: center;
+     justify-content: center;
+ }
+ strong{
+     font-size: 22px;
+ }
+ p{
+     font-size: 18px;
+ }
+h1{
+    text-align: left;
+    font-weight: 800;
+    margin-top: 10px;
+    font-size: 50px;
+}
+
+.card{
+    width: 90%;
+    margin-top: 150px;
+    margin-left: 50px;
+}
+.evidencia, .card-title{
+display: flex;
+justify-content: center;
+    align-items: center;
+}
+.card{
+    border-radius: 50px;
+}

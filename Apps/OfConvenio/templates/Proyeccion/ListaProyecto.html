@@ -1,0 +1,52 @@
+{% extends "Base.html" %}
+{% load static %}
+{% block title %}
+    Proyecto {{ object.nombreProyecto }} | Proyeccion Social
+{% endblock title %}
+{% block Css %}
+    <link rel="stylesheet" href="{% static 'Css/Proyeccion/listaProyecto.css' %}">
+{% endblock Css %}
+{% block body %}
+    <div class="body">
+    <div class="titulo">
+    <a href="{% url 'inicioProyeccion'%}">
+        <img class="wave" src="{% static 'image/gif/flecha-izquierda.gif' %}" alt="Arrows">
+    </a>
+    <h1>Proyecto {{object.nombreProyecto}} </h1>
+    </div>
+<div class="row">
+  <div class="col-sm-6">
+    <div class="card">
+      <div class="card-body">
+        <h1 class="card-title">Informacion Basica</h1> <br>
+          <p class="card-text"> <strong>Nombre del Proyecto</strong>: {{ object.nombreProyecto }}</p>
+          <p class="card-text"><strong> Programa</strong> : {{ object.programa }}</p>
+          <p class="card-text"><strong> Ciudad</strong> : {{ object.ciudad }}</p>
+          <p class="card-text"><strong> Institucion</strong> : {{ object.institucion }}</p>
+           <p class="card-text"><strong> Numero de estudiantes</strong> : {{ object.numeroEstudiantes }}</p>
+      </div>
+    </div>
+  </div>
+  <div class="col-sm-6">
+    <div class="card">
+      <div class="card-body">
+        <h1 class="card-title">Informacion Complementaria</h1>
+            <p class="card-text"> <strong>Tipo de comunidad</strong>: {{ object.tipoComunidad }}</p>
+           <p class="card-text"> <strong>Organizacion</strong>: {{ object.organizacion }}</p>
+           <p class="card-text"> <strong>Facultad</strong>: {{ object.facultad }}</p>
+           <p class="card-text"> <strong>Codigo BPUT</strong>: {{ object.codigoBput }}</p>
+           <p class="card-text"> <strong>Descripcion</strong>: {{ object.descripcion }}</p>
+           <p class="card-text"> <strong>Evidencia</strong></p>
+           {% if object.evidncia %}
+          <div class="evidencia">
+            <img src="{{ object.evidencia.url }}" alt="" class="evidencia" width="300px" height="200px">
+            {%else%}
+            <h2>No hay evidencia para mostrar</h2>
+            {%endif%}
+          </div>
+      </div>
+    </div>
+  </div>
+</div>
+ 
+{% endblock body %}

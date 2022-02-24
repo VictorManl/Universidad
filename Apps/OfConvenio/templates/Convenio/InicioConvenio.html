@@ -1,0 +1,86 @@
+{% extends "Base.html" %}
+{% load static %}
+{% block title %}
+    Inicio Convenios | Proyeccion Social
+{% endblock title %}
+{% block Css %}
+    <link rel="stylesheet" href="{% static 'Css/Convenio/inicioConvenio.css' %}">
+{% endblock Css %}
+{% block body %}
+    <div class="titulo">
+        <img class="gif" src="{% static 'image/gif/apreton-de-manos.gif' %}" alt="">
+        <h1>Convenios</h1>
+    </div>
+
+    <div class="reporte">
+    <a role="button" href="{% url 'Reporte' %}">
+        <img class="img" src="{% static 'image/Proyeccion/Reporte.png' %}"> Generar Reporte
+    </a>
+    </div>
+
+    <div class="card">
+    <div class="crear">
+        <a href="{% url 'crearConvenio' %}" role="button" class="btn btn-success">Crear Convenio</a>
+    </div>
+    <div class="card-body">
+        <img class="gif1"  src="{% static 'image/gif/lista-de-verificacion.gif' %}" alt="GifListado">
+        <h1 class="listado">Listado de convenios</h1>
+    </div>
+<div class="conteiner">
+          <table class="table">
+              <thead>
+                  <tr>
+                      <th>Id</th>
+                      <th>Fecha</th>
+                      <th>Numero del Convenio</th>
+                      <th>Numero de CC</th>
+                      <th>Nombre</th>
+                      <th>Telefono</th>
+                      <th>Municipio</th>
+                      <th>Programa</th>
+                      <th>Facultad</th>
+                      <th>Opciones</th>
+                  </tr>
+              </thead>
+              {% if object_list%}
+              <tbody>
+                  {% for  Convenios in object_list  %}
+                  <tr>
+                      <td>{{ Convenios.codigo }}</td>
+                      <td>{{ Convenios.fecha}}</td>
+                      <td>{{ Convenios.convenio }}</td>
+                      <td>{{ Convenios.documento }}</td>
+                      <td>{{ Convenios.nombre }}</td>
+                      <td>{{ Convenios.telefono }}</td>
+                      <td>{{ Convenios.municipio }}</td>
+                      <td>{{ Convenios.programa }}</td>
+                      <td>{{  Convenios.facultad }}</td>
+                      <td> 
+                          <a class="btn btn-ligth" href="{% url 'editarConvenio' Convenios.codigo %}" role="button">Editar</a>
+                      </td>
+                  </tr>
+                  {% endfor %}
+
+                  {% else %}
+                  <h1 class="convenio">No hay convenios registrados</h1>
+                  {% endif %}
+                </tbody>
+          </table>
+ <ul>
+     <li class="li">
+         {% if page_obj.has_previous %}
+             <a href="?page={{ page_obj.previous_page_number }}" class="btn btn-secondary   " role="button">Anterior</a>
+         {% endif %}
+     </li>
+     <li class="li">
+         {% if page_obj.has_next %}
+             <a href="?page={{ page_obj.next_page_number }}" class="btn btn-secondary" role="button">Siguiente</a>
+         {% endif %}
+     </li>
+ </ul>
+
+</div>
+</div>
+
+    <script src="{% static 'Java/editar.js'%}"></script>
+{% endblock body %}
