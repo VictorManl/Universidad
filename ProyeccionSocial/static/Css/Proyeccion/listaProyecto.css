@@ -27,13 +27,16 @@ h1{
 .card{
     width: 90%;
     margin-top: 150px;
-    margin-left: 50px;
+    margin-left: 1  0px;
 }
 .evidencia, .card-title{
-display: flex;
-justify-content: center;
+    display: flex;
+    justify-content: center;
     align-items: center;
 }
 .card{
     border-radius: 50px;
+}
+.editar{
+    margin-top: 10px;
 }

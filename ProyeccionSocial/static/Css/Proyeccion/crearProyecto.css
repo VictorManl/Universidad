@@ -50,7 +50,7 @@ h1{
 .gif{
     width: 50px;
     float: left;
-    margin-left: -200px;
+    margin-left: -100px;
 }
  form{
      background: #fff;
@@ -68,7 +68,7 @@ h1{
   }
   .volver{
       width: 60px;
-      margin-left: 500px;
+      margin-left: 140px;
   }
 .btn-success{
    margin-left: 75%;
@@ -78,9 +78,13 @@ h1{
 }
 .left{
     float: left;
-    margin-right: 50px;
+    margin-left:  200px;
+}
+.form{
+    margin-top: 50px;
 }
 .rigth{
     float: right;
     margin-top: -30px;
+    margin-right: 200px;
 }

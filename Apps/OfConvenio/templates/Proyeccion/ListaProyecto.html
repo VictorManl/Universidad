@@ -4,18 +4,16 @@
     Proyecto {{ object.nombreProyecto }} | Proyeccion Social
 {% endblock title %}
 {% block Css %}
-    <link rel="stylesheet" href="{% static 'Css/Proyeccion/listaProyecto.css' %}">
+    
 {% endblock Css %}
 {% block body %}
+<link rel="stylesheet" href="{% static 'Css/Proyeccion/listaProyecto.css' %}">
     <div class="body">
     <div class="titulo">
     <a href="{% url 'inicioProyeccion'%}">
         <img class="wave" src="{% static 'image/gif/flecha-izquierda.gif' %}" alt="Arrows">
     </a>
     <h1>Proyecto {{object.nombreProyecto}} </h1>
-    </div>
-    <div class="editar">
-       <a class="btn btn-success" href="{% url 'editarProyecto' object.codigo %}" role="button">Editar</a>
     </div>
 <div class="row">
   <div class="col-sm-6">
@@ -40,7 +38,7 @@
            <p class="card-text"> <strong>Codigo BPUT</strong>: {{ object.codigoBput }}</p>
            <p class="card-text"> <strong>Descripcion</strong>: {{ object.descripcion }}</p>
            <p class="card-text"> <strong>Evidencia</strong></p>
-           {% if object.evidncia %}
+           {% if object.evidencia %}
           <div class="evidencia">
             <img src="{{ object.evidencia.url }}" alt="" class="evidencia" width="300px" height="200px">
             {%else%}
@@ -50,6 +48,9 @@
       </div>
     </div>
   </div>
+  <div class="editar">
+    <a class="btn btn-success" href="{% url 'editarProyecto' object.codigo %}" role="button">Editar</a>
+ </div>
 </div>
     </div>
 {% endblock body %}
