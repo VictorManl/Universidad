@@ -4,11 +4,10 @@
 {{ page_title }}  | Proyeccion Social
 {% endblock title %}
 {% block Css %}
+{% endblock Css %}
+{% block body %}
 <link href="https://fonts.googleapis.com/css?family=Poppins:400,800,900" rel="stylesheet">
     <link rel="stylesheet" href="{% static 'Css/Proyeccion/crearProyecto.css' %}">
-{% endblock Css %}
-
-{% block body %}
     <div class="atras">
      <a href="{% url 'inicioProyeccion' %}" role="button">
         <img class="volver" src="{% static 'image/gif/flecha-izquierda.gif' %}" alt="">
@@ -18,70 +17,58 @@
             <img class="gif" src="{% static 'image/gif/nota.gif' %}" alt="">
      <h1>{{ page_title }}</h1>
     </div>
-<div class="body">
     <form method="post" enctype="multipart/form-data">
         {% csrf_token %}
         <div class="form">
             <div class="left">
-
-
             <div class="grupo">
                 {{ form.programa.label }}
-                {{form.programa}}
+                {{ form.programa }}
             </div>
             <div class="grupo">
                 {{ form.ciudad.label }}
-                {{form.ciudad}}
+                {{ form.ciudad}}
             </div>
             <div class="grupo">
                 {{ form.institucion.label }}
-                {{form.institucion}}
+                {{ form.institucion }}
             </div>
             <div class="grupo">
                 {{ form.numeroEstudiantes.label }}
-                {{form.numeroEstudiantes}}
+                {{ form.numeroEstudiantes }}
             </div>
             <div class="grupo">
                 {{ form.tipoComunidad.label }}
-                {{form.tipoComunidad}}
+                {{ form.tipoComunidad }}
             </div>
             </div>
             <div class="rigth">
             <div class="grupo">
                 {{ form.organizacion.label }}
-                {{form.organizacion}}
+                {{ form.organizacion}}
             </div>
             <div class="grupo">
                 {{ form.facultad.label }}
-                {{form.facultad}}
+                {{ form.facultad}}
             </div>
             <div class="grupo">
                 {{ form.nombreProyecto.label }}
-                {{form.nombreProyecto}}
+                {{ form.nombreProyecto}}
             </div>
             <div class="grupo">
                 {{ form.codigoBput.label }}
-                {{form.codigoBput}}
+                {{ form.codigoBput}}
             </div>
             <div class="grupo">
                 {{ form.descripcion.label }}
-                {{form.descripcion}}
+                {{ form.descripcion}}
             </div>
             <div class="grupo">
                 {{ form.evidencia.label }}
-                {{form.evidencia}}
+                {{ form.evidencia }}
             </div>
             </div>
-
         </div>
-
-
-        </div>
-    </div>
-
-</div>
-
-<button class="btn btn-success" type="submit">Guardar</button>
-</form> 
-</div>
+    <button class="btn btn-success" type="submit">Guardar</button>
+    </form>
 {% endblock %}   

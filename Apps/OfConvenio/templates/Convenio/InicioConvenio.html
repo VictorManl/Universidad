@@ -20,14 +20,14 @@
 
     <div class="card">
     <div class="crear">
-        <a href="{% url 'crearConvenio' %}" role="button" class="btn btn-success">Crear Convenio</a>
+       <button class="btn btn-success" onclick="crear('{% url 'crearConvenio'%}')" role="button">Crear Convenio</button>
     </div>
     <div class="card-body">
         <img class="gif1"  src="{% static 'image/gif/lista-de-verificacion.gif' %}" alt="GifListado">
         <h1 class="listado">Listado de convenios</h1>
     </div>
 <div class="conteiner">
-          <table class="table">
+          <table class="table" id="data">
               <thead>
                   <tr>
                       <th>Id</th>
@@ -56,7 +56,7 @@
                       <td>{{ Convenios.programa }}</td>
                       <td>{{  Convenios.facultad }}</td>
                       <td> 
-                          <a class="btn btn-ligth" href="{% url 'editarConvenio' Convenios.codigo %}" role="button">Editar</a>
+                          <button class="btn btn-ligth" rel="edit"  onclick="abrir_modal('{% url 'editarConvenio' Convenios.codigo %}')" role="button">Editar</button>
                       </td>
                   </tr>
                   {% endfor %}
@@ -69,7 +69,7 @@
  <ul>
      <li class="li">
          {% if page_obj.has_previous %}
-             <a href="?page={{ page_obj.previous_page_number }}" class="btn btn-secondary   " role="button">Anterior</a>
+             <a href="?page={{ page_obj.previous_page_number }}" class="btn btn-secondary" role="button">Anterior</a>
          {% endif %}
      </li>
      <li class="li">
@@ -82,5 +82,31 @@
 </div>
 </div>
 
-    <script src="{% static 'Java/editar.js'%}"></script>
+    <div class="modal fade" id="edicion" role="dialog">
+
+
+    </div>
+
+ <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript">
+    </script>
+    <script type="text/javascript" >
+        function abrir_modal(url){
+         $('#edicion').load(url, function (){
+             $(this).modal('show');
+         });
+        }
+    </script>
+    <script type="text/javascript" >
+        function crear(url){
+         $('#edicion').load(url, function (){
+             $(this).modal('show');
+         });
+        }
+    </script>
 {% endblock body %}
+
+{% block Scripts %}
+
+{% endblock Scripts %}
+
+

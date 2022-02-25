@@ -3,6 +3,16 @@ from django.db import models
 # Create your models here.
 
 class Convenios(models.Model):
+    PROYECTOS_CHOICES = (
+        ('Regionalizacion', 'Regionalizacion'),
+        ('UT Solidaria', 'UT Solidaria'),
+        ('UT Para los niños', 'UT Para los niños'),
+        ('UT En tu comunidad', 'UT En tu comunidad'),
+        ('Articulacion con la escuela', 'Articulacion con la escuela'),
+        ('Universidad territorio de paz', 'Universidad territorio de paz'),
+        ('Apropiacion social del conocimiento', 'Apropiacion social del conocimiento'),
+        ('Universidad abierta', 'Universidad abierta'),
+    )
     FACULTAD_CHOICES = (
         ('No aplica','No aplica'),
         ('Facultad de ciencias humanas y artes','Facultad de ciencias humanas y artes'),
@@ -23,7 +33,7 @@ class Convenios(models.Model):
     nombre = models.CharField('Nombre Estudiante',max_length=40, blank=False, null=False)
     telefono = models.CharField('Celular Estudiante',max_length=15, blank=False, null=False)
     municipio = models.CharField('Municipio',max_length=30, blank=False, null=False)
-    programa = models.CharField('Programa',max_length= 50, blank=False, null=False)
+    programa = models.CharField('Programa',max_length= 50, blank=False, null=False, choices=PROYECTOS_CHOICES)
     facultad = models.CharField('Facultad',max_length= 80, null= False, choices= FACULTAD_CHOICES)
     
     class Meta:

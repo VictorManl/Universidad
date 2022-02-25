@@ -14,7 +14,7 @@
 
     <div class="reporte">
     <a role="button" href="{% url 'ReporteProyeccion' %}">
-        <img class="img" src="{% static 'image/Proyeccion/Reporte.png' %}"> Generar Reporte
+        <img class="img" src="{% static 'image/Proyeccion/Reporte.png' %}" alt="ImgReporte"> Generar Reporte
     </a>
     </div>
 
@@ -55,6 +55,7 @@
                     <td>{{ ProyectosProyeccionSocial.programa }}</td>
                     <td  class="descripcion">{{  ProyectosProyeccionSocial.descripcion }}</td>
                     <td>
+                        <a class="btn btn-dark" href="{% url 'editarProyecto' ProyectosProyeccionSocial.codigo %}" role="button">Editar</a>
                         <a class="btn btn-dark" href="{% url 'verProyecto' ProyectosProyeccionSocial.codigo %}" role="button">Ver proyecto</a>
                     </td>
                 </tr>

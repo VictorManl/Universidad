@@ -20,9 +20,9 @@ urlpatterns = [
 
     #ProyeccionSocial
     path("Inicio/Proyectos",login_required(proyeccionInicio.as_view()), name="inicioProyeccion"),
-    path('Proyeccion/Crear_proyecto',login_required(CrearProyecto.as_view()), name = "crearProyecto"),
+    path('Proyecto/Crear_proyecto',login_required(CrearProyecto.as_view()), name = "crearProyecto"),
     path('Proyeccion/Lista/Reporte',login_required(proyeccionReporte.as_view()), name = 'ReporteProyeccion'),
     path('Proyeccion/ver_proyecto/<int:pk>',login_required(verProyecto.as_view()), name = "verProyecto"),
-    path("Proyeccion/ver_proyecto/editar/<int:pk>",login_required(editarProyecto.as_view()), name="editarProyecto")
+    path("Proyecto/editar/<int:pk>",editarProyecto.as_view(), name="editarProyecto")
     
 ] 

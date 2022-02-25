@@ -7,20 +7,15 @@
         border:none;
         border-bottom: solid 1px #334756;
     }
-    .modal-header{
-        display: flex;
-        align-items: center;
-        justify-content: center;
-    }
 </style>
 <div class="modal-dialog modal-lg" role="document">
     <div class="modal-content">
         <div class="modal-header">
             <h2 class="modal-title">
-                {{ page_title }}
+                {{ page_title }} | {{ object }}
             </h2>
         </div>
-        <form action="{% url 'crearConvenio' %}" method="post">
+        <form action="{% url 'editarConvenio' object.codigo %}" method="post">
             {% csrf_token %}
             <div class="modal-body">
                 <div class="grupo">
@@ -31,26 +26,26 @@
                     {{ form.convenio.label }}
                     {{form.convenio}}
                 </div>
-          <div class="grupo">
-              {{ form.nombre.label }}
-              {{form.nombre}}
-            </div>
-            <div class="grupo">
-                {{ form.telefono.label }}
-                {{form.telefono}}
-            </div>
-            <div class="grupo">
-                {{ form.municipio.label }}
-                {{form.municipio}}
-            </div>
-            <div class="grupo">
-                {{ form.programa.label }}
-                {{form.programa}}
-            </div>
-            <div class="grupo">
-                {{ form.facultad.label }}
-                {{form.facultad}}
-            </div>
+              <div class="grupo">
+                  {{ form.nombre.label }}
+                  {{form.nombre}}
+                </div>
+                <div class="grupo">
+                    {{ form.telefono.label }}
+                    {{form.telefono}}
+                </div>
+                <div class="grupo">
+                    {{ form.municipio.label }}
+                    {{form.municipio}}
+                </div>
+                <div class="grupo">
+                    {{ form.programa.label }}
+                    {{form.programa}}
+                </div>
+                <div class="grupo">
+                    {{ form.facultad.label }}
+                    {{form.facultad}}
+                </div>
         </div>
         <div class="modal-footer">
             <a href="{% url 'inicioConvenio' %}" class="btn btn-danger" role="button" data-dismiss="modal">Cancelar</a>

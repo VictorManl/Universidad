@@ -1,13 +1,14 @@
 from django.contrib import messages
+from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect
 from django.urls import reverse_lazy
+from django.utils.decorators import method_decorator
 from django.views.generic import ListView, CreateView, UpdateView, TemplateView, DetailView
 from django.http.response import HttpResponse, HttpResponseRedirect
 from .models import Convenios, ProyectosProyeccionSocial
 from .forms import listaFormulario, formC
 from openpyxl import Workbook
 from openpyxl.styles import Border, Side, PatternFill, Font, Alignment
-
 
 
 # Create your views here.
@@ -22,15 +23,19 @@ class index(TemplateView):
     page_title = 'Inicio'
     template_name = 'index.html'
 
+
     def get_context_data(self, **kwargs):
         context = super(index, self).get_context_data(**kwargs)
         context['page_title'] = self.page_title
         return context
 
+
 class InicioConvenio(ListView):
     model = Convenios
     template_name = 'Convenio/InicioConvenio.html'
+    profile_list = Convenios.objects.get_queryset().order_by('codigo')
     paginate_by = 5
+
 
 class crearC(CreateView):
     model = Convenios
@@ -44,13 +49,14 @@ class crearC(CreateView):
         context['page_title'] = self.page_title
         return context
 
+
 class editarC(UpdateView):
     model = Convenios
     form_class = listaFormulario
     page_title = 'Editar Convenio'
     success_url = reverse_lazy('inicioConvenio')
     context_object_name = 'obj'
-    template_name = 'Convenio/crearConvenio.html'
+    template_name = 'Convenio/convenio.html'
 
     def get_context_data(self, **kwargs):
         context = super(editarC, self).get_context_data(**kwargs)
@@ -224,7 +230,9 @@ class reporteExcel(TemplateView):
 class proyeccionInicio(ListView):
     model = ProyectosProyeccionSocial
     template_name = 'Proyeccion/inicioProyeccion.html'
+    profile_list = ProyectosProyeccionSocial.objects.get_queryset().order_by('codigo')
     paginate_by = 5
+
 
 class CrearProyecto(CreateView):
     model = ProyectosProyeccionSocial
@@ -238,13 +246,14 @@ class CrearProyecto(CreateView):
         context['page_title'] = self.page_title
         return context
 
+
 class editarProyecto(UpdateView):
     model = ProyectosProyeccionSocial
     form_class = formC
-    page_title = 'Editar  Proyecto'
-    success_url = reverse_lazy('verProyecto')
+    page_title = 'Editar Proyecto'
+    success_url = reverse_lazy('inicioProyeccion')
     context_object_name = 'obj'
-    template_name = 'Proyeccion/editarProyecto.html'
+    template_name = 'Proyeccion/crearProyecto.html'
 
     def get_context_data(self, **kwargs):
         context = super(editarProyecto, self).get_context_data(**kwargs)
@@ -260,6 +269,7 @@ class verProyecto(DetailView):
         context = super(verProyecto, self).get_context_data(**kwargs)
         context['page_title'] = self.page_title
         return context
+
 
 class proyeccionReporte(TemplateView):
     def get(self, request, *args, **kwargs):
@@ -288,8 +298,7 @@ class proyeccionReporte(TemplateView):
         ws.column_dimensions['J'].width = 35
         ws.column_dimensions['K'].width = 35
         ws.column_dimensions['L'].width = 35
-        ws.column_dimensions['M'].width = 200
-
+        ws.column_dimensions['M'].width = 150
 
         # Crear la cabecera
         ws['B2'].alignment = Alignment(horizontal="center", vertical="center")
@@ -475,7 +484,6 @@ class proyeccionReporte(TemplateView):
             ws.cell(row=contador, column=13).font = Font(name='Century Gothic', size=14)
             ws.cell(row=contador, column=13).alignment = Alignment(horizontal="center")
             ws.cell(row=contador, column=13).value = proyectos.descripcion
-
 
             contador += 1
 
