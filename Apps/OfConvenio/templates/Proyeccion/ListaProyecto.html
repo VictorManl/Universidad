@@ -1,80 +1,52 @@
 {% extends "Base.html" %}
 {% load static %}
 {% block title %}
-    Proyecto {{ object.nombreProyecto }} | Proyeccion Social
+Proyecto {{ object.nombreProyecto }} | Proyeccion Social
 {% endblock title %}
 {% block Css %}
-    
+
+
 {% endblock Css %}
 {% block body %}
 <link rel="stylesheet" href="{% static 'Css/Proyeccion/listaProyecto.css' %}">
-    <div class="body">
-    <div class="titulo">
-    <a href="{% url 'inicioProyeccion'%}">
-        <img class="wave" src="{% static 'image/gif/flecha-izquierda.gif' %}" alt="Arrows">
-    </a>
-    <h1>Proyecto {{object.nombreProyecto}} </h1>
-    </div>
-<div class="row">
-  <div class="col-sm-6">
-    <div class="card">
-         <h1 class="card-title">Información</h1> <br>
-        <div class="carta">
-             <img class="informacion" src="{% static 'image/gif/redes-sociales.gif' %}" alt="redes">
-        </div>
-      <div class="accordion-item">
-    <h2 class="accordion-header" id="flush-headingOne">
-      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
-        Agregar Docente
-      </button>
-    </h2>
-    <div id="flush-collapseOne" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
-      <div class="accordion-body">Numero de Documento</div>
-        <div class="cc">
-            <input type="text">
-        </div>
-    </div>
-  </div>
-  <div class="accordion-item">
-    <h2 class="accordion-header" id="flush-headingTwo">
-      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseTwo" aria-expanded="false" aria-controls="flush-collapseTwo">
-        Agregar Estudiante
-      </button>
-    </h2>
-    <div id="flush-collapseTwo" class="accordion-collapse collapse" aria-labelledby="flush-headingTwo" data-bs-parent="#accordionFlushExample">
-      <div class="accordion-body">Documento</div>
-        <div class="cc">
-            <input type="text">
-        </div>
-    </div>
-  </div>
-  </div>
+<div class="titulo">
+  <a href="{%  url  'inicioProyeccion' %}">
+    <img class="wave" src="{% static 'Image/gif/flecha-izquierda.gif' %}" alt="">
+  </a>
+  <h1>{{object.nombreProyecto}}</h1>
 </div>
-    </div>
-  </div>
-  <div class="col-sm-6">
+<div class="row">
+  <div class="col-sm-3">
     <div class="card">
+      <img class="gif" src="{% static 'Image/gif/redes-sociales.gif' %}" alt="">
       <div class="card-body">
-        <h1 class="card-title">Informacion Complementaria</h1>
-            <p class="card-text"> <strong>Tipo de comunidad</strong>: {{ object.tipoComunidad }}</p>
-           <p class="card-text"> <strong>Organizacion</strong>: {{ object.organizacion }}</p>
-           <p class="card-text"> <strong>Facultad</strong>: {{ object.facultad }}</p>
-           <p class="card-text"> <strong>Codigo BPUT</strong>: {{ object.codigoBput }}</p>
-           <p class="card-text"> <strong>Descripcion</strong>: {{ object.descripcion }}</p>
-           <p class="card-text"> <strong>Evidencia</strong></p>
-           {% if object.evidencia %}
-          <div class="evidencia">
-            <img src="{{ object.evidencia.url }}" alt="" class="evidencia" width="300px" height="200px">
-            {%else%}
-            <h2>No hay evidencia para mostrar</h2>
-            {%endif%}
-          </div>
+        <h2 class="card-title">Agregar Informacion</h2>
+        <a href="{% url 'agregarDocente' %}"  style="display: flex; align-items:center; justify-content:center;" class="btn btn-dark">Añadir Docente</a> <br> 
+        <a href="#"  style="display: flex; align-items:center; justify-content:center; margin-bottom:20px;"  class="btn btn-info">Añadir Estudiante</a>
+        <a href="{% url 'editarProyecto'  object.codigo %}"  style="display: flex; align-items:center; justify-content:center; margin-bottom:20px;"  class="btn btn-success">Editar</a>
       </div>
     </div>
   </div>
-  <div class="editar">
-    <a class="btn btn-success" href="{% url 'editarProyecto' object.codigo %}" role="button">Editar</a>
- </div>
-</div>
+  <div class="col-sm-8">
+    <div class="card">
+      <div class="card-body">
+        <h1 class="card-title">Informacion del Proyecto</h1>
+        <p class="card-text"> <strong> Nombre del programa:  </strong>  {{object.programa}} </p>
+        <p class="card-text"> <strong> Ciudad: </strong>{{object.ciudad}} </p>
+        <p class="card-text"> <strong> Institucion: </strong>{{object.institucion }} </p>
+        <p class="card-text"> <strong> Numero de Estudiantes: </strong>{{object.numeroEstudiantes}} </p>
+        <p class="card-text"> <strong> Tipo de Comunidad: </strong>{{object.tipoComunidad}} </p>
+        <p class="card-text"> <strong> Organizacion: </strong>{{object.organizacion}} </p>
+        <p class="card-text"> <strong> Facultad: </strong> {{object.facultad}}</p>
+        <p class="card-text"> <strong> Nombre del Proyecto: </strong>{{object.nombreProyecto}} </p>
+        <p class="card-text"> <strong> Codigo Bput: </strong> {{object.codigoBput}}</p>
+        <p class="card-text"> <strong> Descripcion:</strong>{{object.descripcion}} </p>
+        <p class="card-text"> <strong> Evidencia:</strong> </p>
+        <img class="evidencia" src="{{ object.evidencia.url }}" alt="" width="250"  height="250">
+
+      </div>
     </div>
+  </div>
+</div>
+
 {% endblock body %}

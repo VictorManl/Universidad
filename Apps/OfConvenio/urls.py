@@ -1,6 +1,6 @@
 from django.urls import path
 from django .contrib.auth.decorators import login_required
-from .views import InicioConvenio, crearC, reporteExcel, proyeccionReporte, editarC, CrearProyecto, verProyecto, Login,proyeccionInicio, index, editarProyecto
+from .views import InicioConvenio, crearC, reporteExcel, proyeccionReporte, editarC, CrearProyecto, verProyecto, Login,proyeccionInicio, index, editarProyecto,docenteAgregar
 from Apps.usuarios.views import Login,logoutUsuario
 
 
@@ -20,6 +20,7 @@ urlpatterns = [
 
     #ProyeccionSocial
     path("Inicio/Proyectos",login_required(proyeccionInicio.as_view()), name="inicioProyeccion"),
+    path("Proyecto/añadir_docente", docenteAgregar.as_view(), name="agregarDocente"),
     path('Proyecto/Crear_proyecto',login_required(CrearProyecto.as_view()), name = "crearProyecto"),
     path('Proyeccion/Lista/Reporte',login_required(proyeccionReporte.as_view()), name = 'ReporteProyeccion'),
     path('Proyeccion/ver_proyecto/<int:pk>',login_required(verProyecto.as_view()), name = "verProyecto"),

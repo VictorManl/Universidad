@@ -1,3 +1,5 @@
+from pyexpat import model
+from re import template
 from django.shortcuts import render
 from django.urls import reverse_lazy
 from django.views.generic import ListView, CreateView, UpdateView, TemplateView, DetailView
@@ -32,7 +34,6 @@ class InicioConvenio(ListView):
     template_name = 'Convenio/InicioConvenio.html'
     profile_list = Convenios.objects.get_queryset().order_by('codigo')
     paginate_by = 5
-
 
 class crearC(CreateView):
     model = Convenios
@@ -229,6 +230,16 @@ class proyeccionInicio(ListView):
     template_name = 'Proyeccion/inicioProyeccion.html'
     profile_list = ProyectosProyeccionSocial.objects.get_queryset().order_by('codigo')
     paginate_by = 5
+
+class docenteAgregar(ListView):
+    model = ProyectosProyeccionSocial
+    template_name = 'Proyeccion/añadirDocente.html'
+    page_title = 'Nuevo Docente'
+    
+    def get_context_data(self, **kwargs):
+        context = super(docenteAgregar, self).get_context_data(**kwargs)
+        context['page_title'] = self.page_title
+        return context
 
 class CrearProyecto(CreateView):
     model = ProyectosProyeccionSocial

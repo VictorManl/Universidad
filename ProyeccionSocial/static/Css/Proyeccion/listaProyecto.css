@@ -2,44 +2,13 @@
 .body{
    font-family:'Hind', sans-serif;
 }
- .wave,.informacion{
-    width: 58px;
-    float: left;
-}
- .titulo{
-     display: flex;
-    align-items: center;
-     justify-content: center;
- }
- strong{
-     font-size: 22px;
- }
- p{
-     font-size: 18px;
- }
-h1{
-    text-align: left;
-    font-weight: 800;
-    margin-top: 10px;
-    font-size: 50px;
-}
-
-.card{
-    width: 90%;
-    margin-top: 150px;
-    margin-left: 10px;
-}
-.evidencia, .card-title{
+.titulo{
     display: flex;
     justify-content: center;
     align-items: center;
 }
-.card{
-    border-radius: 50px;
-}
-.editar{
-    margin-top: 10px;
-}
-.informacion{
+.wave{
     width: 50px;
+    float: left;
 }
+

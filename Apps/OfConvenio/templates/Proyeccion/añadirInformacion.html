@@ -1,43 +1,43 @@
 {% extends "Base.html" %}
 {% load static %}
 {% block title %}
-{{ page_title }}  | Proyeccion Social
+{{ page_title }} | Proyeccion Social
 {% endblock title %}
 {% block Css %}
 <link href="https://fonts.googleapis.com/css?family=Poppins:400,800,900" rel="stylesheet">
-    <link rel="stylesheet" href="{% static 'Css/Proyeccion/añadirInformacion.css' %}">
+<link rel="stylesheet" href="{% static 'Css/Proyeccion/añadirInformacion.css' %}">
 {% endblock Css %}
 
 {% block body %}
-    <div class="titulo">
+<div class="titulo">
     <a href="{% url 'inicioProyeccion'%}">
         <img class="wave" src="{% static 'image/gif/flecha-izquierda.gif' %}">
     </a>
-     <h1>{{ page_title }}</h1>
-    </div>
+    <h1>{{ page_title }}</h1>
+</div>
 
 <div class="body">
     <form method="post" enctype="multipart/form-data">
         {% csrf_token %}
         <div class="form">
             <div class="grupo">
-                 {{ form.tipoComunidad.label }}
+                {{ form.tipoComunidad.label }}
                 {{form.tipoComunidad}}
             </div>
             <div class="grupo">
-                 {{ form.organizacion.label }}
+                {{ form.organizacion.label }}
                 {{form.organizacion}}
-                </div>
-                <div class="grupo">
-                     {{ form.numeroEstudiantes.label }}
+            </div>
+            <div class="grupo">
+                {{ form.numeroEstudiantes.label }}
                 {{form.numeroEstudiantes}}
-                </div>
-                <div class="grupo">
-                     {{ form.codigoBput.label }}
+            </div>
+            <div class="grupo">
+                {{ form.codigoBput.label }}
                 {{form.codigoBput}}
-                </div>
-                <div class="grupo">
-                 {{ form.facultad.label }}
+            </div>
+            <div class="grupo">
+                {{ form.facultad.label }}
                 {{form.facultad}}
             </div>
             <div class="grupo">
@@ -47,6 +47,6 @@
         </div>
         <button class="btn btn-success" type="submit">Guardar</button>
     </form>
-    </div>
 </div>
-{% endblock %}   
+</div>
+{% endblock %}

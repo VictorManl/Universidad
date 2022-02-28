@@ -1,26 +1,26 @@
 {% extends "Base.html" %}
 {% load  static %}
 {% block title %}
-{{ page_title }}  | Proyeccion Social
+{{ page_title }} | Proyeccion Social
 {% endblock title %}
 {% block Css %}
 {% endblock Css %}
 {% block body %}
 <link href="https://fonts.googleapis.com/css?family=Poppins:400,800,900" rel="stylesheet">
-    <link rel="stylesheet" href="{% static 'Css/Proyeccion/crearProyecto.css' %}">
-    <div class="atras">
-     <a href="{% url 'inicioProyeccion' %}" role="button">
+<link rel="stylesheet" href="{% static 'Css/Proyeccion/crearProyecto.css' %}">
+<div class="atras">
+    <a href="{% url 'inicioProyeccion' %}" role="button">
         <img class="volver" src="{% static 'image/gif/flecha-izquierda.gif' %}" alt="">
-     </a>
-    </div>
-    <div class="titulo">
-            <img class="gif" src="{% static 'image/gif/nota.gif' %}" alt="">
-     <h1>{{ page_title }}</h1>
-    </div>
-    <form method="post" enctype="multipart/form-data">
-        {% csrf_token %}
-        <div class="form">
-            <div class="left">
+    </a>
+</div>
+<div class="titulo">
+    <img class="gif" src="{% static 'image/gif/nota.gif' %}" alt="">
+    <h1>{{ page_title }}</h1>
+</div>
+<form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    <div class="form">
+        <div class="left">
             <div class="grupo">
                 {{ form.programa.label }}
                 {{ form.programa }}
@@ -41,8 +41,8 @@
                 {{ form.tipoComunidad.label }}
                 {{ form.tipoComunidad }}
             </div>
-            </div>
-            <div class="rigth">
+        </div>
+        <div class="rigth">
             <div class="grupo">
                 {{ form.organizacion.label }}
                 {{ form.organizacion}}
@@ -67,8 +67,8 @@
                 {{ form.evidencia.label }}
                 {{ form.evidencia }}
             </div>
-            </div>
         </div>
+    </div>
     <button class="btn btn-success" type="submit">Guardar</button>
-    </form>
-{% endblock %}   
+</form>
+{% endblock %}

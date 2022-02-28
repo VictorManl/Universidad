@@ -259,7 +259,7 @@ main.sign-up-mode .carousel {
 }
 
 .text-wrap {
-  max-height: 2.2rem;
+  max-height: 3rem;
   overflow: hidden;
   margin-bottom: 2.5rem;
 }
@@ -272,8 +272,8 @@ main.sign-up-mode .carousel {
   transition: 0.5s;
 }
 
-.text-group h2 {
-  line-height: 2.2rem;
+.text-group h5 {
+  line-height: 4rem;
   font-weight: 600;
   font-size: 1.6rem;
 }

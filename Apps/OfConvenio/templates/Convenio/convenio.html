@@ -1,10 +1,11 @@
 {% load static%}
 <style>
-    .grupo{
+    .grupo {
         padding: 20px;
     }
-    input{
-        border:none;
+
+    input {
+        border: none;
         border-bottom: solid 1px #334756;
     }
 </style>
@@ -26,9 +27,9 @@
                     {{ form.convenio.label }}
                     {{form.convenio}}
                 </div>
-              <div class="grupo">
-                  {{ form.nombre.label }}
-                  {{form.nombre}}
+                <div class="grupo">
+                    {{ form.nombre.label }}
+                    {{form.nombre}}
                 </div>
                 <div class="grupo">
                     {{ form.telefono.label }}
@@ -46,11 +47,12 @@
                     {{ form.facultad.label }}
                     {{form.facultad}}
                 </div>
-        </div>
-        <div class="modal-footer">
-            <a href="{% url 'inicioConvenio' %}" class="btn btn-danger" role="button" data-dismiss="modal">Cancelar</a>
-            <button class="btn btn-primary" type="submit">Guardar</button>
-        </div>
+            </div>
+            <div class="modal-footer">
+                <a href="{% url 'inicioConvenio' %}" class="btn btn-danger" role="button"
+                    data-dismiss="modal">Cancelar</a>
+                <button class="btn btn-primary" type="submit">Guardar</button>
+            </div>
         </form>
     </div>
 </div>
