@@ -23,6 +23,5 @@ urlpatterns = [
     path('Proyecto/Crear_proyecto',login_required(CrearProyecto.as_view()), name = "crearProyecto"),
     path('Proyeccion/Lista/Reporte',login_required(proyeccionReporte.as_view()), name = 'ReporteProyeccion'),
     path('Proyeccion/ver_proyecto/<int:pk>',login_required(verProyecto.as_view()), name = "verProyecto"),
-    path("Proyecto/editar/<int:pk>",editarProyecto.as_view(), name="editarProyecto")
-    
+    path("Proyecto/editar/<int:pk>",editarProyecto.as_view(), name="editarProyecto"),
 ] 
