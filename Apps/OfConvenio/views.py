@@ -233,7 +233,6 @@ class proyeccionInicio(ListView):
     profile_list = ProyectosProyeccionSocial.objects.get_queryset().order_by('codigo')
     paginate_by = 5
 
-
 class CrearProyecto(CreateView):
     model = ProyectosProyeccionSocial
     form_class = formC
@@ -245,7 +244,6 @@ class CrearProyecto(CreateView):
         context = super(CrearProyecto, self).get_context_data(**kwargs)
         context['page_title'] = self.page_title
         return context
-
 
 class editarProyecto(UpdateView):
     model = ProyectosProyeccionSocial
@@ -260,7 +258,6 @@ class editarProyecto(UpdateView):
         context['page_title'] = self.page_title
         return context
 
-
 class verProyecto(DetailView):
     model = ProyectosProyeccionSocial
     page_title = 'Ver Proyecto'
@@ -270,7 +267,6 @@ class verProyecto(DetailView):
         context = super(verProyecto, self).get_context_data(**kwargs)
         context['page_title'] = self.page_title
         return context
-
 
 class proyeccionReporte(TemplateView):
     def get(self, request, *args, **kwargs):

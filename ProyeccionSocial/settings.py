@@ -41,7 +41,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'Apps.OfConvenio',
     'Apps.usuarios',
-
+    'Apps.academicoglobal',
 ]
 
 MIDDLEWARE = [
@@ -84,21 +84,6 @@ DATABASES = {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': BASE_DIR / 'ProyeccionSocial.db',
     },
-    'academicoacademico': {
-                'ENGINE': 'django.db.backends.oracle',
-                'NAME': 'NIVELA',
-                #'NAME': 'UTOLACAD1',
-                'USER': 'ACADEMICO',
-                #'USER': 'WEBSERVICEERP',
-                #'PASSWORD': '8CDUAkGKEBxjzuh9***',
-                'PASSWORD': '123456789',
-                'HOST': '192.168.107.54',
-                #'HOST': '192.168.125.20',
-                'PORT': '1521',
-                'OPTIONS': {
-                    'threaded': True,
-                },
-            },
     'academicoglobal': {
                 'ENGINE': 'django.db.backends.oracle',
                 'NAME': 'NIVELA',
@@ -107,29 +92,14 @@ DATABASES = {
                 #'USER': 'WEBSERVICEERP',
                 #'PASSWORD': '8CDUAkGKEBxjzuh9***',
                 'PASSWORD': '123456789',
-                'HOST': '192.168.107.54',
+                'HOST': '192.168.108.32',
                 #'HOST': '192.168.125.20',
                 'PORT': '1521',
                 'OPTIONS': {
                     'threaded': True,
                 },
             },
-    'academicogeneral': {
-                    'ENGINE': 'django.db.backends.oracle',
-                    'NAME': 'NIVELA',
-                    #'NAME': 'UTOLACAD1',
-                    'USER': 'GENERAL',
-                    #'USER': 'WEBSERVICEERP',
-                    #'PASSWORD': '8CDUAkGKEBxjzuh9***',
-                    'PASSWORD': '123456789',
-                    'HOST': '192.168.107.54',
-                    #'HOST': '192.168.125.20',
-                    'PORT': '1521',
-                    'OPTIONS': {
-                        'threaded': True,
-                    },
-                },
-}
+ }
 
 
 # Password validation
