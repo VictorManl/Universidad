@@ -2,7 +2,7 @@
 .body{
    font-family:'Hind', sans-serif;
 }
- .wave{
+ .wave,.informacion{
     width: 58px;
     float: left;
 }
@@ -27,7 +27,7 @@ h1{
 .card{
     width: 90%;
     margin-top: 150px;
-    margin-left: 1  0px;
+    margin-left: 10px;
 }
 .evidencia, .card-title{
     display: flex;
@@ -39,4 +39,7 @@ h1{
 }
 .editar{
     margin-top: 10px;
+}
+.informacion{
+    width: 50px;
 }

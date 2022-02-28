@@ -1,10 +1,7 @@
-from django.contrib import messages
-from django.contrib.auth.decorators import login_required
-from django.shortcuts import render, redirect
+from django.shortcuts import render
 from django.urls import reverse_lazy
-from django.utils.decorators import method_decorator
 from django.views.generic import ListView, CreateView, UpdateView, TemplateView, DetailView
-from django.http.response import HttpResponse, HttpResponseRedirect
+from django.http.response import HttpResponse
 from .models import Convenios, ProyectosProyeccionSocial
 from .forms import listaFormulario, formC
 from openpyxl import Workbook
@@ -492,3 +489,4 @@ class proyeccionReporte(TemplateView):
         response["Content-Disposition"] = contenido
         wb.save(response)
         return response
+

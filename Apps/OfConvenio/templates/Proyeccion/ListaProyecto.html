@@ -18,14 +18,38 @@
 <div class="row">
   <div class="col-sm-6">
     <div class="card">
-      <div class="card-body">
-        <h1 class="card-title">Informacion Basica</h1> <br>
-          <p class="card-text"> <strong>Nombre del Proyecto</strong>: {{ object.nombreProyecto }}</p>
-          <p class="card-text"><strong> Programa</strong> : {{ object.programa }}</p>
-          <p class="card-text"><strong> Ciudad</strong> : {{ object.ciudad }}</p>
-          <p class="card-text"><strong> Institucion</strong> : {{ object.institucion }}</p>
-           <p class="card-text"><strong> Numero de estudiantes</strong> : {{ object.numeroEstudiantes }}</p>
-      </div>
+         <h1 class="card-title">Información</h1> <br>
+        <div class="carta">
+             <img class="informacion" src="{% static 'image/gif/redes-sociales.gif' %}" alt="redes">
+        </div>
+      <div class="accordion-item">
+    <h2 class="accordion-header" id="flush-headingOne">
+      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
+        Agregar Docente
+      </button>
+    </h2>
+    <div id="flush-collapseOne" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
+      <div class="accordion-body">Numero de Documento</div>
+        <div class="cc">
+            <input type="text">
+        </div>
+    </div>
+  </div>
+  <div class="accordion-item">
+    <h2 class="accordion-header" id="flush-headingTwo">
+      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseTwo" aria-expanded="false" aria-controls="flush-collapseTwo">
+        Agregar Estudiante
+      </button>
+    </h2>
+    <div id="flush-collapseTwo" class="accordion-collapse collapse" aria-labelledby="flush-headingTwo" data-bs-parent="#accordionFlushExample">
+      <div class="accordion-body">Documento</div>
+        <div class="cc">
+            <input type="text">
+        </div>
+    </div>
+  </div>
+  </div>
+</div>
     </div>
   </div>
   <div class="col-sm-6">
