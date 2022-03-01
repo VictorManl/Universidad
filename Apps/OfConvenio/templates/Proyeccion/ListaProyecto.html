@@ -4,33 +4,47 @@
 Proyecto {{ object.nombreProyecto }} | Proyeccion Social
 {% endblock title %}
 {% block Css %}
-
+<link rel="stylesheet" href="{% static 'Css/Proyeccion/listaProyectos.css' %}">
+<style>
+  .titulo{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  h1{
+    text-align: left;
+    font-weight: 800;
+    margin-top: 10px;
+    font-size: 50px;
+}
+.card-text{
+  font-size: 24px
+}
+</style>
 
 {% endblock Css %}
 {% block body %}
-<link rel="stylesheet" href="{% static 'Css/Proyeccion/listaProyecto.css' %}">
+
 <div class="titulo">
   <a href="{%  url  'inicioProyeccion' %}">
-    <img class="wave" src="{% static 'Image/gif/flecha-izquierda.gif' %}" alt="">
+    <img class="wave"  style="width: 50px;" src="{% static 'Image/gif/flecha-izquierda.gif' %}" alt="">
   </a>
-  <h1>{{object.nombreProyecto}}</h1>
+  <h1> Proyecto: {{object.nombreProyecto}}</h1>
 </div>
-<div class="row">
-  <div class="col-sm-3">
-    <div class="card">
-      <img class="gif" src="{% static 'Image/gif/redes-sociales.gif' %}" alt="">
-      <div class="card-body">
-        <h2 class="card-title">Agregar Informacion</h2>
-        <a href="{% url 'agregarDocente' %}"  style="display: flex; align-items:center; justify-content:center;" class="btn btn-dark">Añadir Docente</a> <br> 
-        <a href="#"  style="display: flex; align-items:center; justify-content:center; margin-bottom:20px;"  class="btn btn-info">Añadir Estudiante</a>
-        <a href="{% url 'editarProyecto'  object.codigo %}"  style="display: flex; align-items:center; justify-content:center; margin-bottom:20px;"  class="btn btn-success">Editar</a>
-      </div>
+<div class="row" style="margin-top: 50px;" >
+  <div class="card" style="width: 17rem;  margin-top:50px; margin-left: 100px; height:550px;border-radius: 20px; ">
+    <img src="{% static 'Image/imagenes/agregar-usuario.png' %}" style="margin-top: 20px;" class="card-img-top" alt="...">
+    <div class="card-body">
+      <h2 class="card-title">Agregar Informacion</h2>
+      <a href="{% url 'agregarDocente' %}" class="btn btn-dark" style="margin-bottom:10px; display:flex;justify-content:center" >Agregar Docente</a>
+      <a href="#"  class="btn btn-primary" style="margin-bottom: 10px;display:flex;justify-content:center" >Agregar Estudiante</a>
+      <a href="#" style="display:flex;justify-content:center" class="btn btn-success">Editar</a>
     </div>
   </div>
   <div class="col-sm-8">
-    <div class="card">
-      <div class="card-body">
-        <h1 class="card-title">Informacion del Proyecto</h1>
+    <div class="card" style="border-radius: 20px;">
+      <div class="card-body"  >
+        <h1 class="card-title" style="font-size:60px;display: flex; align-items:center; justify-content:center; margin-bottom:40px; "  >Informacion del Proyecto</h1>
         <p class="card-text"> <strong> Nombre del programa:  </strong>  {{object.programa}} </p>
         <p class="card-text"> <strong> Ciudad: </strong>{{object.ciudad}} </p>
         <p class="card-text"> <strong> Institucion: </strong>{{object.institucion }} </p>

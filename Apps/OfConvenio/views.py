@@ -4,6 +4,8 @@ from django.shortcuts import render
 from django.urls import reverse_lazy
 from django.views.generic import ListView, CreateView, UpdateView, TemplateView, DetailView
 from django.http.response import HttpResponse
+
+from Apps.academicoglobal.models import Persona
 from .models import Convenios, ProyectosProyeccionSocial
 from .forms import listaFormulario, formC
 from openpyxl import Workbook
@@ -231,15 +233,24 @@ class proyeccionInicio(ListView):
     profile_list = ProyectosProyeccionSocial.objects.get_queryset().order_by('codigo')
     paginate_by = 5
 
-class docenteAgregar(ListView):
+class docenteAgregar(TemplateView):
     model = ProyectosProyeccionSocial
     template_name = 'Proyeccion/añadirDocente.html'
     page_title = 'Nuevo Docente'
     
-    def get_context_data(self, **kwargs):
+    def post(self, request, *args, **kwargs):
         context = super(docenteAgregar, self).get_context_data(**kwargs)
-        context['page_title'] = self.page_title
-        return context
+        page_title = 'Docente'
+      
+        if request.method == 'POST':
+                print(request.POST)
+                #if request.POST['documento']:
+                cdocumento = request.POST['documento']
+                persona = Persona.objects.filter(pers_documentoidentidad=cdocumento)
+                def get_context_data(self, **kwargs):
+                    context['pk'] = self.kwargs.get('pk')
+                    context['persona'] = persona
+                    return context
 
 class CrearProyecto(CreateView):
     model = ProyectosProyeccionSocial

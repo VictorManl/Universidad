@@ -16,7 +16,7 @@ h1{
 .img{
     width: 30px;
 }
-a{
+.crear{
     color: black;
     font-size: 20px;
 }
@@ -46,15 +46,7 @@ a{
 .descripcion{
     max-width: 250px;
 }
-.btn-info{
-    background: #334756;
-    color: white;
-    border: none;
-}
-.btn-dark{
-    background: darkgrey;
-    border: none;
-}
+
 .crear{
     float: right;
     margin-right: 40px;
