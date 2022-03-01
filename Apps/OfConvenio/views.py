@@ -233,25 +233,6 @@ class proyeccionInicio(ListView):
     profile_list = ProyectosProyeccionSocial.objects.get_queryset().order_by('codigo')
     paginate_by = 5
 
-class docenteAgregar(TemplateView):
-    model = ProyectosProyeccionSocial
-    template_name = 'Proyeccion/añadirDocente.html'
-    page_title = 'Nuevo Docente'
-    
-    def post(self, request, *args, **kwargs):
-        context = super(docenteAgregar, self).get_context_data(**kwargs)
-        page_title = 'Docente'
-      
-        if request.method == 'POST':
-                print(request.POST)
-                #if request.POST['documento']:
-                cdocumento = request.POST['documento']
-                persona = Persona.objects.filter(pers_documentoidentidad=cdocumento)
-                def get_context_data(self, **kwargs):
-                    context['pk'] = self.kwargs.get('pk')
-                    context['persona'] = persona
-                    return context
-
 class CrearProyecto(CreateView):
     model = ProyectosProyeccionSocial
     form_class = formC
@@ -512,3 +493,20 @@ class proyeccionReporte(TemplateView):
         wb.save(response)
         return response
 
+
+class DocenteBuscar(TemplateView):
+    template_name = 'Proyeccion/añadirDocente.html'
+
+    def post(self, request, *args, **kwargs):
+        context = super(DocenteBuscar, self).get_context_data(**kwargs)
+        page_title = 'Docente'
+
+        if request.method == 'POST':
+            print(request.POST)
+            #if request.POST['documento']:
+            cdocumento = request.POST['documento']
+            persona = Persona.objects.filter(pers_documentoidentidad=cdocumento)
+            return context
+            #else:
+            #    print('no hay datos')
+            
