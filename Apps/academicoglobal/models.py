@@ -1,5 +1,6 @@
 from django.db import models
 
+# Create your models here.
 class TipoDocumento(models.Model):
     tdoc_id = models.BigAutoField(primary_key=True)
     tdoc_nombre = models.CharField(max_length=30)
@@ -29,15 +30,3 @@ class Persona(models.Model):
     class Meta:
         managed = False
         db_table = '"GLOBAL"."PERSONA"'
-
-
-class PersonaGeneral(models.Model):
-    pege_id = models.BigAutoField(primary_key=True)
-    pege_tipopersona = models.IntegerField(null=True,blank=True)
-    pege_direccion = models.CharField(max_length=100,null=True,blank=True)
-    pege_mail = models.CharField(max_length=50,null=True,blank=True)
-
-    class Meta:
-        managed = False
-        db_table = '"general"."personageneral"'
-        
