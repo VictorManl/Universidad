@@ -9,52 +9,9 @@
 {% endblock Css %}
 
 {% block body %}
-<link rel="stylesheet" href="{% static 'Css/Proyeccion/añadirDocente.css' %}">
-
-<h1> {{ page_title }} </h1>
-<div class="card-body">
-    <form id="demo-form2" method='post' role="form" enctype="multipart/form-data">
-        {% csrf_token %}
-        <div class="form-group row">
-           <label title="Documento de Identidad" class="col-form-label text-right col-lg-3 col-sm-12" >Documento de Identidad<span class="required">*</span>
-           </label>
-           <div class="col-lg-4 col-md-9 col-sm-12">
-               <input class="form-control" type="text" id="documento" name = 'documento' placeholder="Documento de Identidad" maxlength="12" required>
-           </div>
-         </div>
-
-
-       <div class="row">
-           <div class="col-lg-9 ml-lg-auto">
-               <button type="submit" class="btn btn-primary mr-2">Buscar</button>
-           </div>
-       </div>
-    </form>
-   <p></p>
-   <p></p>
-   <div>
-       <table id="datatable" class="table table-striped table-bordered">
-           <thead>
-             <tr>
-               <th>DOCUMENTO</th>
-               <th>NOMBRES</th>
-               <th>CORREO</th>
-               <th>Acción</th>
-
-             </tr>
-           </thead>
-           <tbody>
-               <tr>
-               {% for persona in persona %}
-                   <td>{{ persona.pers_documentoidentidad }}</td>
-                   <td>{{ persona.pers_primernombre }} {{ persona.pers_segundonombre }} {{ persona.pers_primerapellido }} {{ persona.pers_segundoapellido }}</td>
-                   <td>{{ persona.pers_correoinstitucional }}</td>
-               {% endfor %}
-               </tr>
-           </tbody>
-       </table>
-   </div>
-
-</div>
-
+            {{ personas.pers_id }}
+        
+        </tr>
+    </tbody>
+</table>
 {% endblock body %}
