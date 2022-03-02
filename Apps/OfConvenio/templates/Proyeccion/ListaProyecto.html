@@ -36,12 +36,10 @@ body{
   <h1> Proyecto: {{object.nombreProyecto}}</h1>
 </div>
 <div class="card" style="width: 18rem;">
-  <img src="{% static 'Image/imagenes/agregar-usuario.png' %}" style="margin-top: 20px;" class="card-img-top"
+  <img  id="image" src="{% static 'Image/imagenes/agregar-usuario.png' %}"class="card-img-top"
       alt="...">
   <div class="card-body">
     <h2 class="card-title">Agregar Informacion</h2>
-      <a href="{% url 'agregarDocente' %}" class="btn btn-dark"
-        style="margin-bottom:10px; display:flex;justify-content:center">Agregar Docente</a>
       <a href="#" class="btn btn-primary" style="margin-bottom: 10px;display:flex;justify-content:center">Agregar
         Estudiante</a>
       <a href="{% url 'editarProyecto'  object.codigo %}" style="display:flex;justify-content:center"

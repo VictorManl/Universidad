@@ -9,9 +9,12 @@
 {% endblock Css %}
 
 {% block body %}
-            {{ personas.pers_id }}
-        
-        </tr>
-    </tbody>
-</table>
+
+{% for  Persona in object_list  %}
+
+    <h2> 
+        {{ Persona.pers_documentoidentidad }} 
+    </h2>
+{% endfor %}
+
 {% endblock body %}

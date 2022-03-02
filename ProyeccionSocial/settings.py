@@ -41,7 +41,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'Apps.OfConvenio',
     'Apps.usuarios',
-    'Apps.academicoglobal',
+    'Apps.Academico',
 ]
 
 MIDDLEWARE = [
@@ -95,9 +95,6 @@ DATABASES = {
                 'HOST': '192.168.108.32',
                 #'HOST': '192.168.125.20',
                 'PORT': '1521',
-                'OPTIONS': {
-                    'threaded': True,
-                },
             },
  }
 

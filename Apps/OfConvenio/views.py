@@ -4,7 +4,7 @@ from django.shortcuts import render
 from django.urls import reverse_lazy
 from django.views.generic import ListView, CreateView, UpdateView, TemplateView, DetailView
 from django.http.response import HttpResponse
-from Apps.academicoglobal.models import Persona
+from Apps.Academico.models import Persona
 from .models import Convenios, ProyectosProyeccionSocial
 from .forms import listaFormulario, formC
 from openpyxl import Workbook
@@ -506,19 +506,13 @@ class proyeccionReporte(TemplateView):
         return response
 
 
-class DocenteBuscar(TemplateView):
+class DocenteBuscar(DetailView):
+    model = Persona
+    page_title = 'Ver Docente'
     template_name = 'Proyeccion/añadirDocente.html'
 
-    def post(self, request, *args, **kwargs):
+    def get_context_data(self, **kwargs):
         context = super(DocenteBuscar, self).get_context_data(**kwargs)
-        page_title = 'Docente'
-
-        if request.method == 'POST':
-            print(request.POST)
-            #if request.POST['documento']:
-            cdocumento = request.POST['documento']
-            persona = Persona.objects.filter(pers_documentoidentidad=cdocumento)
-            return context
-            #else:
-            #    print('no hay datos')
-            
+        context['page_title'] = self.page_title
+        return context
+      
