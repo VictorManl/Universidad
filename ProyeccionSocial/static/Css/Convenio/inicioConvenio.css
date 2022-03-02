@@ -10,12 +10,8 @@ h1{
 }
 .img{
     width: 30px;
-}
-a{
-    color: black;
-    font-size: 20px;
-}
 
+}
 .card{
     width: 90%;
     margin-top: 100px;
@@ -43,10 +39,14 @@ a{
 .conteiner{
     margin: 20px;
 }
+.page{
+    background: white;
+}
 
 .li{
     float: right;
     margin-right: 80px;
+    color: white;
 }
 .btn-ligth{
     background: black;

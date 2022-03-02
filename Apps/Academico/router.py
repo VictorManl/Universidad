@@ -7,8 +7,8 @@ class AcademicoGlobalRouter(object):
         """
         Attempts to read mi_app_2 models go to mi_db_2.
         """
-        if model._meta.app_label == 'Academico':
-            return 'academicoglobal'
+        if model._meta.app_label == 'Apps.Academico':
+            return 'ProyeccionSocial'
         return None
 
     """def db_for_write(self, model, **hints):

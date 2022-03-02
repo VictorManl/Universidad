@@ -1,10 +1,11 @@
 {% extends "Base.html" %}
 {% load static %}
 {% block title %}
-Lista Proyecto | Proyeccion Social
+Inicio Proyecto | Proyeccion Social
 {% endblock title %}
+
 {% block Css %}
-<link rel="stylesheet" href="{% static 'Css/Proyeccion/inicioProyeccion.css' %}">
+<link rel="stylesheet" href="{% static 'Css/Proyeccion/inicioProyeccion.css' %}">   
 {% endblock Css %}
 {% block body %}
 <div class="titulo" style="margin-left: 30px;" >
@@ -13,7 +14,7 @@ Lista Proyecto | Proyeccion Social
 </div>
 
 <div class="reporte">
-    <a role="button" href="{% url 'ReporteProyeccion' %}">
+    <a role="button"  style="text-decoration: none;color:black;" href="{% url 'ReporteProyeccion' %}">
         <img class="img" src="{% static 'image/Proyeccion/Reporte.png' %}" alt="ImgReporte"> Generar Reporte
     </a>
 </div>

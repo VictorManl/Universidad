@@ -20,7 +20,7 @@ urlpatterns = [
 
     #ProyeccionSocial
     path('Inicio/Proyectos',login_required(proyeccionInicio.as_view()), name="inicioProyeccion"),
-    path('Proyecto/añadir_docente/<int:pk>', DocenteBuscar.as_view(), name="agregarDocente"),
+    path('Proyecto/agregar_docente/', DocenteBuscar.as_view(), name="agregarDocente"),
     path('Proyecto/Crear_proyecto',login_required(CrearProyecto.as_view()), name = "crearProyecto"),
     path('Proyeccion/Lista/Reporte',login_required(proyeccionReporte.as_view()), name = 'ReporteProyeccion'),
     path('Proyeccion/ver_proyecto/<int:pk>',login_required(verProyecto.as_view()), name = "verProyecto"),

@@ -84,7 +84,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': BASE_DIR / 'ProyeccionSocial.db',
     },
-    'academicoglobal': {
+   'academicoglobal': {
                 'ENGINE': 'django.db.backends.oracle',
                 'NAME': 'NIVELA',
                 #'NAME': 'UTOLACAD1',
@@ -95,6 +95,7 @@ DATABASES = {
                 'HOST': '192.168.108.32',
                 #'HOST': '192.168.125.20',
                 'PORT': '1521',
+              
             },
  }
 

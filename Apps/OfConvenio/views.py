@@ -1,10 +1,8 @@
-from pyexpat import model
-from re import template
 from django.shortcuts import render
 from django.urls import reverse_lazy
 from django.views.generic import ListView, CreateView, UpdateView, TemplateView, DetailView
 from django.http.response import HttpResponse
-from Apps.Academico.models import Persona
+from Apps.Academico.models import TipoDocumento
 from .models import Convenios, ProyectosProyeccionSocial
 from .forms import listaFormulario, formC
 from openpyxl import Workbook
@@ -233,7 +231,7 @@ class proyeccionInicio(ListView):
     paginate_by = 5
     
 class docente(DetailView):
-    model = Persona
+    model = TipoDocumento
     page_title = 'Ver Docente'
     template_name = 'Proyeccion/añadirDocente.html'
 
@@ -506,8 +504,8 @@ class proyeccionReporte(TemplateView):
         return response
 
 
-class DocenteBuscar(DetailView):
-    model = Persona
+class DocenteBuscar(ListView):
+    model = TipoDocumento
     page_title = 'Ver Docente'
     template_name = 'Proyeccion/añadirDocente.html'
 

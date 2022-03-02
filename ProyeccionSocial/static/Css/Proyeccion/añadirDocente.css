@@ -1,9 +1,62 @@
+card{
+    width: 90%;
+    margin-top: 80px;
+    margin-left: 130px;
+   }
 h1{
     text-align: left;
     font-weight: 800;
     margin-top: 10px;
     font-size: 50px;
 }
+.gif{
+    width: 50px;
+    float: left;
+}
+.img{
+    width: 30px;
+}
+.crear{
+    color: black;
+    font-size: 20px;
+}
 .card-body{
-    width: 80%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.gif1{
+    width: 50px;
+    float: left;
+    margin-top: -80px;
+}
+.listado{
+    text-align: left;
+    font-weight: 800;
+    margin-top: -80px;
+    font-size: 40px;
+}
+.reporte{
+    float: right;
+    margin-right: 80px;
+}
+.conteiner{
+    margin: 20px;
+}
+.descripcion{
+    max-width: 250px;
+}
+
+.crear{
+    float: right;
+    margin-right: 40px;
+    margin-top: 20px;
+    border: none;
+}
+a{
+    text-decoration: none;
+}
+.li{
+    float: right;
+    margin-right: 80px;
 }

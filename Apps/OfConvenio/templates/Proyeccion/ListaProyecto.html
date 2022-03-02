@@ -5,28 +5,8 @@ Proyecto {{ object.nombreProyecto }} | Proyeccion Social
 {% endblock title %}
 {% block Css %}
 <link rel="stylesheet" href="{% static 'Css/Proyeccion/listaProyectos.css' %}">
-<style>
-  .titulo {
-    margin-top: -50px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-body{
-  width: 100%;
-}
-  h1 {
-    text-align: left;
-    font-weight: 800;
-    font-size: 50px;
-  }
-
-  .card-text {
-    font-size: 24px
-  }
-</style>
-
 {% endblock Css %}
+
 {% block body %}
 
 <div class="titulo">
@@ -35,41 +15,50 @@ body{
   </a>
   <h1> Proyecto: {{object.nombreProyecto}}</h1>
 </div>
-<div class="card" style="width: 18rem;">
-  <img  id="image" src="{% static 'Image/imagenes/agregar-usuario.png' %}"class="card-img-top"
-      alt="...">
-  <div class="card-body">
-    <h2 class="card-title">Agregar Informacion</h2>
-      <a href="#" class="btn btn-primary" style="margin-bottom: 10px;display:flex;justify-content:center">Agregar
-        Estudiante</a>
-      <a href="{% url 'editarProyecto'  object.codigo %}" style="display:flex;justify-content:center"
-        class="btn btn-success">Editar</a>
+<div class="grid-content">
+  <div class="grid-conteiner-left">
+    <div class="card" style="width: 18rem;">
+      <img id="image" src="{% static 'Image/imagenes/agregar-usuario.png' %}" class="card-img-top" alt="...">
+      <div class="card-body">
+        <h2 class="card-title">Agregar Informacion</h2>
+        <a href="#" class="btn btn-primary" style="margin-bottom: 10px;display:flex;justify-content:center">Agregar
+          Estudiante</a>
+        <a href="{% url 'editarProyecto'  object.codigo %}" style="display:flex;justify-content:center"
+          class="btn btn-success">Editar</a>
+          <a href="{% url 'agregarDocente'%}" class="btn btn-dark"
+    style="margin-top:10px; display:flex;justify-content:center">Agregar Docente</a>
+      </div>
+    </div>
   </div>
-</div>
-<div class="col-sm-7">
-  <div class="card">
-    <div class="card-body">
-      <h1 class="card-title"
-        style="font-size:60px;display: flex; align-items:center; justify-content:center; margin-bottom:40px; ">
-        Informacion del Proyecto</h1>
-      <div class="grid">
-        <div class="left">
-          <p class="card-text"> <strong> Nombre del programa: </strong> {{object.programa}} </p>
-          <p class="card-text"> <strong> Ciudad: </strong>{{object.ciudad}} </p>
-          <p class="card-text"> <strong> Institucion: </strong>{{object.institucion }} </p>
-          <p class="card-text"> <strong> Numero de Estudiantes: </strong>{{object.numeroEstudiantes}} </p>
-          <p class="card-text"> <strong> Tipo de Comunidad: </strong>{{object.tipoComunidad}} </p>
-        </div>
-        <div class="right">
-          <p class="card-text"> <strong> Organizacion: </strong>{{object.organizacion}} </p>
-          <p class="card-text"> <strong> Facultad: </strong> {{object.facultad}}</p>
-          <p class="card-text"> <strong> Nombre del Proyecto: </strong>{{object.nombreProyecto}} </p>
-          <p class="card-text"> <strong> Codigo Bput: </strong> {{object.codigoBput}}</p>
-          <p class="card-text"> <strong> Descripcion:</strong>{{object.descripcion}} </p>
-        </div>
-        <div class="centro">
-          <p class="card-text"> <strong> Evidencia:</strong> </p>
-          <img class="evidencia" src="{{ object.evidencia.url }}" alt="" width="250" height="250"  style="display: flex;justify-content:center; align-items:center;" >
+  <div class="grid-conteiner-right">
+    <div class="col-sm-11">
+      <div class="card">
+        <div class="card-body">
+          <h1 class="card-title"
+            style="font-size:60px;display: flex; align-items:center; justify-content:center; margin-bottom:40px; ">
+            Informacion del Proyecto</h1>
+          <div class="grid">
+            <div class="left">
+              <p class="card-text"> <strong> Nombre del programa: </strong> {{object.programa}} </p>
+              <p class="card-text"> <strong> Ciudad: </strong>{{object.ciudad}} </p>
+              <p class="card-text"> <strong> Institucion: </strong>{{object.institucion }} </p>
+              <p class="card-text"> <strong> Numero de Estudiantes: </strong>{{object.numeroEstudiantes}} </p>
+              <p class="card-text"> <strong> Tipo de Comunidad: </strong>{{object.tipoComunidad}} </p>
+            </div>
+            <div class="right">
+              <p class="card-text"> <strong> Organizacion: </strong>{{object.organizacion}} </p>
+              <p class="card-text"> <strong> Facultad: </strong> {{object.facultad}}</p>
+              <p class="card-text"> <strong> Nombre del Proyecto: </strong>{{object.nombreProyecto}} </p>
+              <p class="card-text"> <strong> Codigo Bput: </strong> {{object.codigoBput}}</p>
+              <p class="card-text"> <strong> Descripcion:</strong>{{object.descripcion}} </p>
+            </div>
+            <div class="centro">
+              <p class="card-text"> <strong> Evidencia:</strong> </p>
+              <img class="evidencia" src="{{ object.evidencia.url }}" alt="" width="250" height="250"
+                style="display: flex;justify-content:center; align-items:center;">
+            </div>
+
+          </div>
         </div>
       </div>
     </div>

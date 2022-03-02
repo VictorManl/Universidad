@@ -1,19 +1,24 @@
- @import url('https://fonts.googleapis.com/css2?family=Hind:wght@500&display=swap');
-.body{
-   font-family:'Hind', sans-serif;
-}
 .wave{
     width: 50px;
     float: left;
 }
 #image{
-    width: 120px;
+    width: 220px;
+    margin-left: 40px;
+    margin-top: 10px;
 }
 .card{
     margin-left: 30px;
     margin-top: 80px;
     border-radius: 40px;
 }
+.grid-content{
+    display: grid;
+    grid-template-rows: 100px 100px;
+    grid-template-columns: 300px 1300px;
+
+}
+
 .grid{
     display: grid;
     grid-template-rows: 300px 300px;
@@ -21,9 +26,34 @@
     grid-column-gap: 50px;
     grid-row-gap: 20px;
 }
+.grid-conteiner-left{
+    grid-column-start: 1;
+    grid-column-end: 2;
+    grid-row-start:1 ;
+    grid-row-end: 2 ;
+}
 .left{
     grid-column-start: 1;
     grid-column-end: 2;
     grid-row-start:1 ;
     grid-row-end: 2 ;
 }
+.titulo {
+    margin-top: -50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+body{
+  width: 100%;
+}
+  h1 {
+    text-align: left;
+    font-weight: 800;
+    font-size: 50px;
+  }
+
+  .card-text {
+    font-size: 24px
+  }
+

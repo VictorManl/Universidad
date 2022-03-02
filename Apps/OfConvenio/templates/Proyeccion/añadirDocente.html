@@ -5,16 +5,29 @@
 {% endblock title %}
 
 {% block Css %}
-  
+  <link rel="stylesheet" href="{% static 'Css/Proyeccion/añadirDocente.css' %}">
 {% endblock Css %}
 
 {% block body %}
+<div style="margin-left: 20px;" class="titulo">
+    <h1>lista Docentes</h1>
+</div>
+    <div class="conteiner">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Id</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for  Tipodocumento in object_list  %}
+                <tr>
+                    <td>{{ Tipodocumento.tdoc_id }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
 
-{% for  Persona in object_list  %}
-
-    <h2> 
-        {{ Persona.pers_documentoidentidad }} 
-    </h2>
-{% endfor %}
-
+</div>
 {% endblock body %}
