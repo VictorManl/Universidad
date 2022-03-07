@@ -1,0 +1,12 @@
+{
+    "sqltools.connections": [
+        {
+            "previewLimit": 50,
+            "driver": "SQLite",
+            "database": "${workspaceFolder:Universidad}/ProyeccionSocial.db",
+            "name": "Universidad",
+            "group": "Proyeccion soical"
+        }
+    ],
+    "sqltools.useNodeRuntime": true
+}
