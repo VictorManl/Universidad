@@ -16,10 +16,6 @@ h1{
 .img{
     width: 30px;
 }
-.crear{
-    color: black;
-    font-size: 20px;
-}
 .card-body{
     display: flex;
     align-items: center;
@@ -45,13 +41,6 @@ h1{
 }
 .descripcion{
     max-width: 250px;
-}
-
-.crear{
-    float: right;
-    margin-right: 40px;
-    margin-top: 20px;
-    border: none;
 }
 a{
     text-decoration: none;

@@ -5,7 +5,20 @@ Inicio Proyecto | Proyeccion Social
 {% endblock title %}
 
 {% block Css %}
-<link rel="stylesheet" href="{% static 'Css/Proyeccion/inicioProyeccion.css' %}">   
+<link rel="stylesheet" href="{% static 'Css/Proyeccion/inicioProyeccion.css' %}">
+
+    <style>
+    .li{
+        color: snow;
+    }
+    .btn-outline-success{
+    float: right;
+    margin-right: 40px;
+    margin-top: 20px;
+    font-size: 20px;
+}
+    </style>
+
 {% endblock Css %}
 {% block body %}
 <div class="titulo" style="margin-left: 30px;" >
@@ -21,7 +34,7 @@ Inicio Proyecto | Proyeccion Social
 
 <div class="card">
     <div class="crear">
-        <a href="{% url 'crearProyecto' %}" role="button" class="btn btn-success crear">Crear Proyecto</a>
+        <a href="{% url 'crearProyecto' %}" role="button" class="btn btn-outline-success ">Crear Proyecto</a>
     </div>
     <div class="card-body">
         <img class="gif1" src="{% static 'image/gif/lista-de-verificacion.gif' %}" alt="GifListado">
@@ -31,11 +44,15 @@ Inicio Proyecto | Proyeccion Social
 
     <div class="conteiner">
         <table class="table">
+        <caption id="total">
+        </caption>
             <thead>
                 <tr>
                     <th>Id</th>
                     <th>Fecha</th>
                     <th>Nombre del proyecto</th>
+                    <th>SubProyecto</th>
+                    <th># Estudiantes</th>
                     <th>Ciudad</th>
                     <th>Institucion</th>
                     <th>Programa</th>
@@ -44,21 +61,27 @@ Inicio Proyecto | Proyeccion Social
 
                 </tr>
             </thead>
-            {% if object_list%}
+            {% if object_list %}
             <tbody>
                 {% for  ProyectosProyeccionSocial in object_list  %}
                 <tr>
                     <td>{{ ProyectosProyeccionSocial.codigo }}</td>
                     <td>{{ ProyectosProyeccionSocial.fecha}}</td>
                     <td>{{ ProyectosProyeccionSocial.nombreProyecto }}</td>
+                    {% if ProyectosProyeccionSocial.sub_proyecto %}
+                        <td>{{ ProyectosProyeccionSocial.sub_proyecto }}</td>
+                    {% else %}
+                        <td>Sin nombre</td>
+                    {% endif %}
+                    <td id="estudiantes">{{ ProyectosProyeccionSocial.numeroEstudiantes }}</td>
                     <td>{{ ProyectosProyeccionSocial.ciudad }}</td>
                     <td>{{ ProyectosProyeccionSocial.institucion }}</td>
                     <td>{{ ProyectosProyeccionSocial.programa }}</td>
                     <td class="descripcion">{{  ProyectosProyeccionSocial.descripcion }}</td>
                     <td>
-                        <a class="btn btn-dark" href="{% url 'editarProyecto' ProyectosProyeccionSocial.codigo %}"
+                        <a class="btn btn-outline-dark" href="{% url 'editarProyecto' ProyectosProyeccionSocial.codigo %}"
                             role="button">Editar</a>
-                        <a class="btn btn-dark" href="{% url 'verProyecto' ProyectosProyeccionSocial.codigo %}"
+                        <a class="btn btn-outline-dark" href="{% url 'verProyecto' ProyectosProyeccionSocial.codigo %}"
                             role="button">Ver proyecto</a>
                     </td>
                 </tr>
@@ -73,16 +96,32 @@ Inicio Proyecto | Proyeccion Social
         <ul>
             <li class="li">
                 {% if page_obj.has_previous %}
-                <a href="?page={{ page_obj.previous_page_number }}" class="btn btn-dark" role="button">Anterior</a>
+                <a href="?page={{ page_obj.previous_page_number }}" class="btn btn-outline-dark" role="button">Anterior</a>
                 {% endif %}
             </li>
             <li class="li">
                 {% if page_obj.has_next %}
-                <a href="?page={{ page_obj.next_page_number }}" class="btn btn-dark" role="button">Siguiente</a>
+                <a href="?page={{ page_obj.next_page_number }}" class="btn btn-outline-dark" role="button">Siguiente</a>
                 {% endif %}
             </li>
         </ul>
     </div>
 
 </div>
+
+     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script>
+            $(document).ready(function ()
+            {
+                var estudiantes;
+                var total = 0;
+                $('td:nth-child(5)').each(function ()
+                {
+                    estudiantes=$(this).html();
+                    total += parseInt(estudiantes);
+                    $('#total').text('Total Estudiantes: ' + total)
+                })
+
+            });
+    </script>
 {% endblock body %}

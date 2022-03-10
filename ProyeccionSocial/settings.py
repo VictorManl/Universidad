@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'Apps.OfConvenio',
     'Apps.usuarios',
     'Apps.Academico',
+    'django_filters',
 ]
 
 MIDDLEWARE = [

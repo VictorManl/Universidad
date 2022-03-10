@@ -1,0 +1,43 @@
+{% extends 'Base.html' %}
+{% load static %}
+{% block title %}
+{{ page_title }}
+{% endblock %}
+{% block Css %}
+    <link rel="stylesheet" href="{% static 'Css/Reporte/reporte.css' %}">
+    <style>
+    .Contenido{
+        margin-left: 50px;
+    }
+    </style>
+{% endblock %}
+{% block body %}
+    <div class="titulo">
+    <h1>Reporte</h1>
+    </div>
+
+    <div class="Contenido">
+    <table class="table table-light table-hover">
+      <thead>
+        <tr>
+          <th scope="col" class="pro">Proyecto</th>
+          <th scope="col" class="sub">Subproyecto</th>
+          <th scope="col" class="indicador">Indicador</th>
+          <th scope="col">Meta</th>
+            <th scope="col">Logro</th>
+            <th scope="col"> % Avance</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <th scope="row" >Regionalizacion</th>
+          <td>Contexto Regional</td>
+          <td>Número de integrantes formados en contexto regional</td>
+          <td>300</td>
+            <td>30</td>
+            <td> 3% </td>
+        </tr>
+      </tbody>
+    </table>
+</div>
+{% endblock %}

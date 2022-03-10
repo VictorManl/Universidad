@@ -1,5 +1,6 @@
+import imp
 from django.db import models
-
+from Apps.OfConvenio.models import Proyectos
 # Create your models here.
 class TipoDocumento(models.Model):
     tdoc_id = models.BigAutoField(primary_key=True)
@@ -30,3 +31,13 @@ class Persona(models.Model):
     class Meta:
         managed = False
         db_table = '"GLOBAL"."PERSONA"'
+        
+class IntegranteProyecto(models.Model):
+    inpo_id = models.AutoField('Id', primary_key=True,blank=False)
+    inpo_rol = models.CharField('Rol', max_length= 50,null=True,blank=True)
+    proy_id = models.ForeignKey(Proyectos,on_delete=models.CASCADE,db_column ='proy_id')
+    
+    class Meta:
+        manage = False
+        verbose_name_plural = "Integrantes proyecto"  
+        db_table = '"PROYECCIONSOCIAL"."INTEGRANTEPROYECTO"'  

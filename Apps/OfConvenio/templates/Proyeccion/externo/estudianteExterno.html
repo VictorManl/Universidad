@@ -1,0 +1,51 @@
+{% extends 'Base.html' %}
+{% load static %}
+{% block title %}
+{{ page_title }}
+{% endblock %}
+{% block Css %}
+    <style>
+    .contenido{
+        margin-left: 50px;
+        margin-right: 50px;
+    }
+    </style>
+{% endblock %}
+{% block body %}
+    <form method="post">
+       {% csrf_token %}
+        {{ form.as_p }}
+    <button type="submit">Guardar</button>
+    </form>
+
+    <div class="contenido">
+     <table class="table">
+        <caption id="total">
+        </caption>
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Nombre </th>
+                    <th>Apellido</th>
+                    <th>Celular</th>
+                    <th>Institucion</th>
+                    <th>Opciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for  estudianteExterno in object_list  %}
+                <tr>
+                    <td>{{ estudianteExterno.codigo }}</td>
+                    <td>{{ estudianteExterno.pri_nombre }}</td>
+                    <td>{{ estudianteExterno.pri_apellido }}</td>
+                    <td>{{ estudianteExterno.celular }}</td>
+                    <td>{{ estudianteExterno.institucion }}</td>
+                    <td>
+                        <a class="btn btn-outline-dark" href="" role="button">Agregar</a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+     </table>
+    </div>
+{% endblock %}

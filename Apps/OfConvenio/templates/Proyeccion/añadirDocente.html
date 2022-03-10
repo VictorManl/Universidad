@@ -1,33 +1,68 @@
 {% extends "Base.html" %}
 {% load static %}
 {% block title %}
-{{ page_title }}
+    Agregar Docente
 {% endblock title %}
 
 {% block Css %}
-  <link rel="stylesheet" href="{% static 'Css/Proyeccion/añadirDocente.css' %}">
+    <style>
+    h1{
+
+}
+button{
+    margin-top: 20px;
+}
+    </style>
 {% endblock Css %}
 
 {% block body %}
-<div style="margin-left: 20px;" class="titulo">
-    <h1>lista Docentes</h1>
+    <link rel="stylesheet" href="{% static 'Css/Proyeccion/añadirDocente.css' %}">
+    <div class="titulo">
+    <img class="gif" src="{% static 'image/gif/flecha-izquierda.gif' %}" alt="">
+    <h1>Añadir Docente</h1>
 </div>
-    <div class="conteiner">
-        <table class="table">
-            <thead>
-                <tr>
-                    <th>Id</th>
-                </tr>
-            </thead>
-            <tbody>
-                {% for  Tipodocumento in object_list  %}
-                <tr>
-                    <td>{{ Tipodocumento.tdoc_id }}</td>
-                </tr>
-                {% endfor %}
-            </tbody>
-        </table>
-    </div>
+<div class="card-body">
+	 <form action="{% url 'agregarDocente' %}" >
+		 <div class="form-group row">
+			<label title="Documento de Identidad" class="col-form-label text-right col-lg-3 col-sm-12" >Documento de Identidad<span class="required">*</span>
+			</label>
+			<div class="col-lg-4 col-md-9 col-sm-12">
+				<input class="form-control" type="text" id="documento" name="documento" placeholder="Documento de Identidad" maxlength="12" required>
+			</div>
+		  </div>
+		<div class="row">
+			<div class="col-lg-9 ml-lg-auto">
+				<button type="submit" class="btn btn-primary mr-2">Buscar</button>
+
+			</div>
+		</div>
+	 </form>
+	<p></p>
+	<p></p>
+	<div>
+		<table id="datatable" class="table table-striped table-bordered">
+			<thead>
+			  <tr>
+				<th>DOCUMENTO</th>
+				<th>NOMBRES</th>
+				<th>CORREO</th>
+				<th>Acción</th>
+
+			  </tr>
+			</thead>
+			<tbody>
+				<tr>
+				{% for persona in persona %}
+					<td>{{ persona.pers_documentoidentidad }}</td>
+					<td>{{ persona.pers_primernombre }} {{ persona.pers_segundonombre }} {{ persona.pers_primerapellido }} {{ persona.pers_segundoapellido }}</td>
+					<td>{{ persona.pers_correoinstitucional }}</td>
+					<td><a class="btn btn-primary" onclick=""  ><span class="fa fa-edit"> Agregar</span></a></td>
+
+				{% endfor %}
+				</tr>
+			</tbody>
+		</table>
+	</div>
 
 </div>
 {% endblock body %}

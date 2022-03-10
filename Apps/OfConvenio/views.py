@@ -1,12 +1,15 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.urls import reverse_lazy
 from django.views.generic import ListView, CreateView, UpdateView, TemplateView, DetailView
+from django.db.models import Sum
 from django.http.response import HttpResponse
-from Apps.Academico.models import TipoDocumento
-from .models import Convenios, ProyectosProyeccionSocial
-from .forms import listaFormulario, formC
+from Apps.Academico.models import Persona, TipoDocumento
+from .models import Convenios, ProyectosProyeccionSocial,docenteExterno,estudianteExterno
+from .forms import listaFormulario, formC,estudianteExForm,docenteExForm
 from openpyxl import Workbook
 from openpyxl.styles import Border, Side, PatternFill, Font, Alignment
+
+
 
 
 # Create your views here.
@@ -33,6 +36,15 @@ class InicioConvenio(ListView):
     template_name = 'Convenio/InicioConvenio.html'
     profile_list = Convenios.objects.get_queryset().order_by('codigo')
     paginate_by = 5
+
+class Reporte(TemplateView):
+    template_name = 'Reporte/Reporte.html'
+    page_title = 'Reporte General'
+
+    def get_context_data(self, **kwargs):
+        context = super(Reporte, self).get_context_data(**kwargs)
+        context['page_title'] = self.page_title
+        return context
 
 class crearC(CreateView):
     model = Convenios
@@ -226,9 +238,15 @@ class reporteExcel(TemplateView):
 
 class proyeccionInicio(ListView):
     model = ProyectosProyeccionSocial
+    total_estudiante = ProyectosProyeccionSocial.objects.all().aggregate(data=Sum('numeroEstudiantes'))
     template_name = 'Proyeccion/inicioProyeccion.html'
     profile_list = ProyectosProyeccionSocial.objects.get_queryset().order_by('codigo')
-    paginate_by = 5
+    paginate_by = 10
+
+    def get_context_data(self, allow_joins = True, **kwargs):
+        context = super(proyeccionInicio, self).get_context_data(**kwargs)
+        context['total_estudiante'] = self.total_estudiante
+        return context
     
 class docente(DetailView):
     model = TipoDocumento
@@ -239,9 +257,9 @@ class docente(DetailView):
         context = super(docente, self).get_context_data(**kwargs)
         context['page_title'] = self.page_title
         return context
-  
-    
- 
+
+
+
 
 class CrearProyecto(CreateView):
     model = ProyectosProyeccionSocial
@@ -290,7 +308,7 @@ class proyeccionReporte(TemplateView):
         ws['B1'].font = Font(name='Century Gothic', size=16, bold=True)
         ws['B1'] = 'Reporte de Proyectos'
         # Cambiar caracteristicas de las celdas
-        ws.merge_cells('B1:M1')
+        ws.merge_cells('B1:N1')
 
         ws.row_dimensions[1].height = 25
 
@@ -305,7 +323,8 @@ class proyeccionReporte(TemplateView):
         ws.column_dimensions['J'].width = 35
         ws.column_dimensions['K'].width = 35
         ws.column_dimensions['L'].width = 35
-        ws.column_dimensions['M'].width = 150
+        ws.column_dimensions['M'].width = 90
+        ws.column_dimensions['N'].width = 35
 
         # Crear la cabecera
         ws['B2'].alignment = Alignment(horizontal="center", vertical="center")
@@ -392,6 +411,18 @@ class proyeccionReporte(TemplateView):
         ws['M2'].font = Font(name='Century Gothic', size=14, bold=True)
         ws['M2'] = 'Descripcion'
 
+        ws['N2'].alignment = Alignment(horizontal="justify", vertical="justify")
+        ws['N2'].border = Border(left=Side(border_style="thin"), right=Side(border_style="thin"),
+                                 top=Side(border_style="thin"), bottom=Side(border_style="thin"))
+        ws['N2'].fill = PatternFill(start_color='66CFCC', end_color='66CFCC', fill_type="solid")
+        ws['N2'].font = Font(name='Century Gothic', size=14, bold=True)
+        ws['N2'] = 'Total De Estudiantes'
+        ws['N3'].alignment = Alignment(horizontal="justify", vertical="justify")
+        ws['N3'].border = Border(left=Side(border_style="thin"), right=Side(border_style="thin"),
+                                 top=Side(border_style="thin"), bottom=Side(border_style="thin"))
+        ws['N3'].font = Font(name='Century Gothic', size=14, bold=False)
+        ws['N3'] = '=SUMA(F3:F100)'
+
         contador = 3
         for proyectos in ProyectosProyeccionSocial.objects.all():
             # Pintamos los dates en el reporte
@@ -434,6 +465,7 @@ class proyeccionReporte(TemplateView):
                                                             bottom=Side(border_style="thin"))
             ws.cell(row=contador, column=6).font = Font(name='Century Gothic', size=14)
             ws.cell(row=contador, column=6).value = proyectos.numeroEstudiantes
+            num_estudiantes = ws.cell(row=contador,column=6).value
 
             ws.cell(row=contador, column=7).alignment = Alignment(horizontal="center")
             ws.cell(row=contador, column=7).border = Border(left=Side(border_style="thin"),
@@ -493,7 +525,6 @@ class proyeccionReporte(TemplateView):
             ws.cell(row=contador, column=13).value = proyectos.descripcion
 
             contador += 1
-
         # Establecer el nombre de mi archivo
         nombre_archivo = "ReporteProyectos.xlsx"
         # Definir el tipo de respuesta que se va a dar
@@ -504,13 +535,25 @@ class proyeccionReporte(TemplateView):
         return response
 
 
-class DocenteBuscar(ListView):
-    model = TipoDocumento
-    page_title = 'Ver Docente'
+# Agregar Estudiante Externo
+
+class crearEstudiante(CreateView):
+    model = estudianteExterno.objects.all()
+    form_class = estudianteExForm
+    template_name = 'Proyeccion/externo/estudianteExterno.html'
+
+
+
+
+
+def DocenteBuscar(request):
     template_name = 'Proyeccion/añadirDocente.html'
 
-    def get_context_data(self, **kwargs):
-        context = super(DocenteBuscar, self).get_context_data(**kwargs)
-        context['page_title'] = self.page_title
-        return context
-      
+    if request.GET.get('documento') is not None:
+        con = request.GET.get('documento')
+        persona = Persona.objects.filter(pers_documentoidentidad__icontains=con)
+        context = {'persona':persona}
+        return render(request, template_name,context)
+    return  render(request,template_name)
+   
+    

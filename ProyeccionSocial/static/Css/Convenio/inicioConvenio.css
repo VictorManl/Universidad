@@ -42,6 +42,9 @@ h1{
 .page{
     background: white;
 }
+a{
+    text-decoration: none;
+}
 
 .li{
     float: right;
@@ -51,11 +54,5 @@ h1{
 .btn-ligth{
     background: black;
     color: white;
-    border: none;
-}
-.btn-success    {
-    float: right;
-    margin-right: 40px;
-    margin-top: 30px;
     border: none;
 }

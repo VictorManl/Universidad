@@ -1,101 +1,91 @@
 from django.db import models
+from Apps.Academico.models import Persona,TipoDocumento,IntegranteProyecto
+
+
 
 # Create your models here.
 
-class Convenios(models.Model):
-    PROYECTOS_CHOICES = (
-        ('Regionalizacion', 'Regionalizacion'),
-        ('UT Solidaria', 'UT Solidaria'),
-        ('UT Para los niños', 'UT Para los niños'),
-        ('UT En tu comunidad', 'UT En tu comunidad'),
-        ('Articulacion con la escuela', 'Articulacion con la escuela'),
-        ('Universidad territorio de paz', 'Universidad territorio de paz'),
-        ('Apropiacion social del conocimiento', 'Apropiacion social del conocimiento'),
-        ('Universidad abierta', 'Universidad abierta'),
-    )
-    FACULTAD_CHOICES = (
-        ('No aplica','No aplica'),
-        ('Facultad de ciencias humanas y artes','Facultad de ciencias humanas y artes'),
-        ('Facultad de ciencias de la educacion','Facultad de ciencias de la educacion'),
-        ('Facultad de medicina veterinaria','Facultad de medicina veterinaria'),
-        ('Facultad de ciencias basicas','Facultada de ciencias basicas'),
-        ('Facultad de tecnologia','Facultad de tecnologia'),
-        ('IDEAD','IDEAD'),
-        ('Facultad de ingenieria agronomica','Facultad de ingenieria agronomica'),
-        ('Facultad de ingenieria forestal','Facultad de ingenieria forestal'),
-        ('Facultad de ciencias en la salud','Facultad de ciencias en la salud'),
-    )
-    
-    codigo = models.AutoField('Codigo',primary_key=True,blank=False)
-    fecha = models.DateField('Fecha',max_length=15, auto_now_add=True)
-    documento = models.CharField('Cc Estudiante',max_length=30, blank=False, null=False)
-    convenio = models.CharField('Numero Convenio',max_length=30, blank=False, null=False)
-    nombre = models.CharField('Nombre Estudiante',max_length=40, blank=False, null=False)
-    telefono = models.CharField('Celular Estudiante',max_length=15, blank=False, null=False)
-    municipio = models.CharField('Municipio',max_length=30, blank=False, null=False)
-    programa = models.CharField('Programa',max_length= 50, blank=False, null=False, choices=PROYECTOS_CHOICES)
-    facultad = models.CharField('Facultad',max_length= 80, null= False, choices= FACULTAD_CHOICES)
+class Ciudad(models.Model):
+    ciud_id = models.BigAutoField(primary_key=True)
+    ciud_nombre = models.CharField(max_length=50,null=True,blank=True)
+    ciud_codigodian = models.CharField(max_length=5,null=True,blank=True)
+
+
+    class Meta:
+        managed = False
+        db_table = '"GLOBAL"."CIUDAD"'
+        
+class Programas(models.Model):
+    prog_id = models.AutoField('Id',primary_key=True)
+    prog_programa = models.CharField('Programa',max_length=50,null=True,blank=True)
     
     class Meta:
+        managed = False
+        verbose_name_plural = "Programas"
+        db_table = '"PROYECCIONSOCIAL"."PROGRAMA"'
+    
+
+class Convenios(models.Model):
+    conv_id = models.AutoField('Id', primary_key=True, blank=False) 
+    conv_fecha = models.DateField('Fecha',max_length=15, auto_now_add=True)
+    conv_documento = models.CharField('Documento', max_length=15, null= False, blank=False)
+    conv_numeroconvenio = models.CharField('Numero Convenio', max_length=20, null=False, blank=False)
+    conv_nombreconvenio = models.CharField('Nombre Convenio', max_length= 80, null= False, blank=False)
+    conv_nombreestudiante = models.CharField('Nombre Estudiante', max_length=80, null= False, blank=False)
+    conv_telefono = models.CharField('Telefono', max_length=80,null=False,blank=False)
+    ciud_id = models.ForeignKey(Ciudad, on_delete=models.CASCADE,db_column='ciud_id')
+    prog_id = models.ForeignKey(Programas,on_delete=models.CASCADE,db_column='prog_id')
+
+
+    class Meta:
+        managed = False
         verbose_name_plural = "Convenios"
+        db_table = '"PROYECCIONSOCIAL"."CONVENIOS"'
     
     def __str__(self):
-                texto = "{0} ({1}) {2} {3})"
-                return texto.format(self.fecha, self.documento, self.nombre,self.convenio)
-            
-class ProyectosProyeccionSocial(models.Model):
-    PROYECTOS_CHOICES = (
-        ('Regionalizacion','Regionalizacion'),
-        ('UT Solidaria','UT Solidaria'),
-        ('UT Para los niños','UT Para los niños'),
-        ('UT En tu comunidad','UT En tu comunidad'),
-        ('Articulacion con la escuela','Articulacion con la escuela'),
-        ('Universidad territorio de paz','Universidad territorio de paz'),
-        ('Apropiacion social del conocimiento','Apropiacion social del conocimiento'),
-        ('Universidad abierta','Universidad abierta'),
-    )
-    CIUDADES_CHOICES=(
-        ('Ibague','Ibague'),
-        ('Bogota','Bogota'),
+                texto = "{0} {1} {2} {3}"
+                return texto.format(self.conv_fecha,self.conv_documento,self.conv_numeroconvenio,self.conv_nombreconvenio)
+
+
+class Comunidad(models.Model):
+    comu_id = models.AutoField('Id',primary_key=True,blank=False)
+    comu_nombrecomunidad = models.CharField('Nombre comuniad', max_length=100,null=True,blank=True)
+    comu_codigo = models.CharField('Codigo', max_length= 100,null=True,blank=True)
+    
+    class Meta:
+        manage = False
+        verbose_name_plural = "Comunidades"
+        db_table = '"PROYECCIONSOCIAL"."COMUNIDAD'
         
-    )
-    COMUNIDAD_CHOICES = (
-        ('No aplica', 'No aplica'),
-        ('Indigena', 'Indigena'),
-        ('Afrodecendiente', 'Afrodecendiente'),
-        ('Campesino', 'Campesino'),
-        ('Comunidad LGBTI', 'Comunidad LGBTI'),
-        ('Victima del conflicto armado', 'Victima del conflicto armado'),)
-    FACULTAD_CHOICES = (
-        ('No aplica', 'No aplica'),
-        ('Facultad de ciencias humanas y artes', 'Facultad de ciencias humanas y artes'),
-        ('Facultad de ciencias de la educacion', 'Facultad de ciencias de la educacion'),
-        ('Facultad de medicina veterinaria', 'Facultad de medicina veterinaria'),
-        ('Facultad de ciencias basicas', 'Facultad de ciencias basicas'),
-        ('Facultad de tecnologia', 'Facultad de tecnologia'),
-        ('IDEAD', 'IDEAD'),
-        ('Facultad de ingenieria agronomica', 'Facultad de ingenieria agronomica'),
-        ('Facultad de ingenieria forestal', 'Facultad de ingenieria forestal'),
-        ('Facultad de ciencias en la salud', 'Facultad de ciencias en la salud'),
-    )
-    codigo = models.AutoField('Codigo',primary_key=True,blank=False)
-    fecha = models.DateField('Fecha',max_length=15, auto_now_add=True)
-    programa = models.CharField('Programa',max_length= 50, null=False, choices = PROYECTOS_CHOICES)
-    ciudad = models.CharField('Ciudad',max_length=30, blank=False, null=False, choices=CIUDADES_CHOICES)
-    institucion = models.CharField('Nombre de la institucion',max_length=30, blank=False, null=False)
-    codigoBput = models.CharField('Codigo BPUT', max_length=50, default=0, editable=True)
-    evidencia = models.ImageField(upload_to="Evidencias", null=True)
-    nombreDocente = models.CharField('Nombre del docente', max_length=50, default='Nn', editable=True)
-    numeroEstudiantes = models.IntegerField('Numero de estudiantes', default=0, editable=True)
-    tipoComunidad = models.CharField('Tipo de Comunidad', max_length=30, choices=COMUNIDAD_CHOICES, default='Nn',
-                                      editable=True)
-    organizacion = models.CharField('Organizacion', max_length=30, default='Nn', editable=True)
-    facultad = models.CharField('Facultad', max_length=80, choices=FACULTAD_CHOICES, default='Nn', editable=True)
-    nombreProyecto = models.CharField('Nombre del proyecto',max_length= 50,default='Nn', editable=True)
-    descripcion = models.CharField('Descripcion', max_length= 200, blank=False, null=False)
 
 
+class Proyectos(models.Model):
+    proy_id = models.AutoField('Id',primary_key=True,blank=True)
+    proy_fecha = models.DateField('Fecha',max_length=15, auto_now_add=True)    
+    prog_id = models.ForeignKey(Programas,on_delete=models.CASCADE,db_column='prog_id')
+    comu_id = models.ForeignKey(Comunidad,on_delete=models.CASCADE,db_column='comu_id')
+    pers_id = models.ForeignKey(Persona,on_delete=models.CASCADE,db_column='pers_id')
+    conv_id = models.ForeignKey(Convenios,on_delete=models.CASCADE,db_column='conv_id')
+    cuid_id = models.ForeignKey(Ciudad,on_delete=models.CASCADE,db_column='cuid_id')
+    inpo_id = models.ForeignKey(IntegranteProyecto,on_delete=models.CASCADE,db_column='inpo_id')
+    tdoc_id = models.ForeignKey(TipoDocumento,on_delete=models.CASCADE,db_column='tdoc_id')
+    proy_subproyecto = models.CharField('Subproyecto',max_length=100,null=True,blank=True)
+    proy_nombreinstitucion = models.CharField('Nombre Institucion',max_length=100,null=True,blank=True)
+    proy_codigobput = models.CharField('Codigo Bput',max_length=100,null=True,blank=True)
+    proy_evidencia = models.CharField('Evidencia',max_length=100,null=True,blank=True)
+    proy_organizacion = models.CharField('Organiziacion',max_length=100,null=True,blank=True)
+    proy_decripcion = models.CharField('Descripcion',max_length=100,null=True,blank=True)  
+    
+    class Meta:
+        manage = False
+        verbose_name = "Proyecto"
+        verbose_name_plural = "Proyectos"
+        db_table = '"PROYECCIONSOCIAL"."PROYECTOS"'
+        
     def __str__(self):
-                texto = "{0} ({1}) {2} {3})"
-                return texto.format(self.fecha, self.programa, self.ciudad,self.institucion)
-            
+        texto = "{0} {1} {2} {3}"
+        return texto.format(self.proy_fecha,self.proy_id,self.prog_id,self.proy_subproyecto)
+
+
+
+

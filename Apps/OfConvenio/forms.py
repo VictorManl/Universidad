@@ -1,7 +1,7 @@
 from django import forms
 from django.forms.utils import ErrorList
 
-from .models import Convenios, ProyectosProyeccionSocial
+from .models import Convenios, ProyectosProyeccionSocial,estudianteExterno,docenteExterno
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
 
@@ -46,6 +46,7 @@ class formC(forms.ModelForm):
         model = ProyectosProyeccionSocial
         field = [
             'programa',
+            'sub_proyecto',
             'ciudad',
             'institucion',
             'numeroEstudiantes',
@@ -59,6 +60,7 @@ class formC(forms.ModelForm):
         ]
         labels = {
             'programa': 'Nombre del programa',
+            'sub_proyecto' : 'Sub Proyecto',
             'ciudad': 'Ciudad / Municipio',
             'institucion':'Nombre de la institucion',
             'numeroEstudiantes': 'Numero de estudiantes',
@@ -74,7 +76,58 @@ class formC(forms.ModelForm):
             'codigo',
             'fecha',
             'nombreDocente',
+            'total_estudiantes',
 
+        ]
+
+class estudianteExForm(forms.ModelForm):
+    class Meta:
+        model = estudianteExterno
+        field = [
+            'doc_identidad',
+            'pri_nombre',
+            'sec_nombre',
+            'pri_apellido',
+            'sec_apellido',
+            'celular',
+            'institucion',
+        ]
+        labels = {
+            'doc_identidad':'Documento de identidad',
+            'pri_nombre': 'Primer nombre',
+            'sec_nombre':'Segundo nombre',
+            'pri_apellido':'Primer apellido',
+            'sec_apellido': 'Segundo apellido',
+            'celular':'Numero celular',
+            'institucion': 'Institucion',
+        }
+        exclude = [
+            'codigo'
+        ]
+
+class docenteExForm(forms.ModelForm):
+    class Meta:
+        model = docenteExterno
+        field = [
+            'doc_identidad',
+            'pri_nombre',
+            'sec_nombre',
+            'pri_apellido',
+            'sec_apellido',
+            'celular',
+            'institucion',
+        ]
+        labels = {
+            'doc_identidad':'Documento de identidad',
+            'pri_nombre': 'Primer nombre',
+            'sec_nombre':'Segundo nombre',
+            'pri_apellido':'Primer apellido',
+            'sec_apellido': 'Segundo apellido',
+            'celular':'Numero celular',
+            'institucion': 'Institucion',
+        }
+        exclude = [
+            'codigo'
         ]
         
 

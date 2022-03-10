@@ -5,6 +5,15 @@
 {% endblock title %}
 {% block Css %}
 <link rel="stylesheet" href="{% static 'Css/Convenio/inicioConvenio.css' %}">
+    <style>
+    .btn-outline-success{
+    float: right;
+    margin-right: 40px;
+    margin-top: 30px;
+        font-size: 20px;
+
+}
+    </style>
 {% endblock Css %}
 {% block body %}
     <div class="titulo" style="margin-left: 30px;">
@@ -13,14 +22,14 @@
     </div>
 
     <div class="reporte">
-    <a role="button"  style="text-decoration: none;" href="{% url 'Reporte' %}">
-        <img class="img" src="{% static 'image/Proyeccion/Reporte.png' %}"> Generar Reporte
+    <a role="button" href="{% url 'Reporte' %}">
+        <img class="img" style="text-decoration: none;color: black;" src="{% static 'image/Proyeccion/Reporte.png' %}" alt=""> Generar Reporte
     </a>
     </div>
 
     <div class="card">
     <div class="crear">
-       <button class="btn btn-success" onclick="crear('{% url 'crearConvenio'%}')" role="button">Crear Convenio</button>
+       <button class="btn btn-outline-success" onclick="crear('{% url 'crearConvenio'%}')" role="button">Crear Convenio</button>
     </div>
     <div class="card-body">
         <img class="gif1"  src="{% static 'image/gif/lista-de-verificacion.gif' %}" alt="GifListado">
@@ -56,7 +65,7 @@
                       <td>{{ Convenios.programa }}</td>
                       <td>{{  Convenios.facultad }}</td>
                       <td> 
-                          <button class="btn btn-ligth" rel="edit"  onclick="abrir_modal('{% url 'editarConvenio' Convenios.codigo %}')" role="button">Editar</button>
+                          <button class="btn btn-outline-dark" rel="edit"  onclick="abrir_modal('{% url 'editarConvenio' Convenios.codigo %}')" role="button">Editar</button>
                       </td>
                   </tr>
                   {% endfor %}
@@ -69,12 +78,12 @@
  <ul class="page" >
      <li class="li">
          {% if page_obj.has_previous %}
-             <a href="?page={{ page_obj.previous_page_number }}" class="btn btn-secondary" role="button">Anterior</a>
+             <a href="?page={{ page_obj.previous_page_number }}" class="btn btn-outline-dark" role="button">Anterior</a>
          {% endif %}
      </li>
      <li class="li">
          {% if page_obj.has_next %}
-             <a href="?page={{ page_obj.next_page_number }}" class="btn btn-secondary" role="button">Siguiente</a>
+             <a href="?page={{ page_obj.next_page_number }}" class="btn btn-outline-dark" role="button">Siguiente</a>
          {% endif %}
      </li>
  </ul>

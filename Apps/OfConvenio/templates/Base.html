@@ -57,6 +57,12 @@
                             <span class="text nav-text">Convenios</span>
                         </a>
                     </li>
+                    <li class="nav-link">
+                        <a href="{% url 'ReporteGeneral' %}">
+                            <i class='bx bx-pie-chart-alt icon' ></i>
+                            <span class="text nav-text">Reporte</span>
+                        </a>
+                    </li>
                 </ul>
             </div>
     
@@ -74,20 +80,15 @@
     
     <section class="home">
         <div class="text" style="color: white;" > {{page_title}} </div>
+    <div class="contenido">
+
+
         {% block body%}
 
 
 
         {% endblock %}
-        <br>
-        <footer class="bg-light text-center text-lg-start">
-          <!-- Copyright -->
-          <div class="text-center text-white p-2" style="background-color: #201E1E;">
-            © 2022   Copyright:
-            <a class="text-white" href="https://www.ut.edu.co/" style="text-decoration: none;" target="_blank" >Universidad del Tolima</a>
-          </div>
-          <!-- Copyright -->
-        </footer>
+    </div>
     </section>
    
   
