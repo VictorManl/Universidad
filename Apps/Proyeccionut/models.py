@@ -1,3 +1,4 @@
+from re import T
 from django.db import models
 from Apps.Academico.models import Persona,TipoDocumento,IntegranteProyecto
 
@@ -70,6 +71,7 @@ class Proyectos(models.Model):
     inpo_id = models.ForeignKey(IntegranteProyecto,on_delete=models.CASCADE,db_column='inpo_id')
     tdoc_id = models.ForeignKey(TipoDocumento,on_delete=models.CASCADE,db_column='tdoc_id')
     proy_subproyecto = models.CharField('Subproyecto',max_length=100,null=True,blank=True)
+    proy_numeroestudiantes = models.CharField('Numero de estudiantes',max_length=100,null=True,blank=True)
     proy_nombreinstitucion = models.CharField('Nombre Institucion',max_length=100,null=True,blank=True)
     proy_codigobput = models.CharField('Codigo Bput',max_length=100,null=True,blank=True)
     proy_evidencia = models.CharField('Evidencia',max_length=100,null=True,blank=True)

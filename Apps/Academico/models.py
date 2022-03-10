@@ -1,6 +1,6 @@
 import imp
 from django.db import models
-from Apps.OfConvenio.models import Proyectos
+from Apps.Proyeccionut.models import Proyectos
 # Create your models here.
 class TipoDocumento(models.Model):
     tdoc_id = models.BigAutoField(primary_key=True)
